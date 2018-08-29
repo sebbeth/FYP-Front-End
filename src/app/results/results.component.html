@@ -1,3 +1,9 @@
-<p>
-  results works!
-</p>
+
+<code>View results</code>
+
+<ul *ngIf="result | async as result else noData">
+{{result}}
+</ul>
+
+
+<ng-template #noData>No Data Available</ng-template>

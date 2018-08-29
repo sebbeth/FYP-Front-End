@@ -23,6 +23,7 @@ export class HttptestComponent implements OnInit {
 
   courses$: Object;
 
+  single: Object;
 
 
    constructor(private dataService: DataService) {
@@ -35,6 +36,7 @@ export class HttptestComponent implements OnInit {
            .do(console.log);*/
 
         this.courses$ = this.dataService.getExample();
+        this.single = this.dataService.getResultWithId(20);
    }
 
 

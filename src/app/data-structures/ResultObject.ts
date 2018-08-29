@@ -1,4 +1,4 @@
-export class ResultSet {
+export class ResultObject {
   id: number;
   timestamp: string;
   data: string;

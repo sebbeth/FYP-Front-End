@@ -1,4 +1,5 @@
 import { Component, OnInit, Input  } from '@angular/core';
+import { ResultObject } from '../../data-structures/ResultObject';
 
 @Component({
   selector: 'app-result-set',
@@ -7,16 +8,15 @@ import { Component, OnInit, Input  } from '@angular/core';
 })
 export class ResultSetComponent implements OnInit {
 
-  @Input() resultSet: Object;
-  id: string;
+  @Input() resultSet: ResultObject;
+  id: number;
   date: string;
 
   constructor() { }
 
   ngOnInit() {
-    this.id = JSON.stringify(this.resultSet);
+    this.id = Number(this.resultSet.id);
     this.date = this.resultSet.timestamp;
-    //this.date = this.resultSet.date;
   }
 
 }

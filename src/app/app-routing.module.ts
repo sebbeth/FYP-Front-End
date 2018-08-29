@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'new', component: NewComponent},
   { path: 'profile', component: ProfileComponent},
-  { path: 'results', component: ResultsComponent},
+  { path: 'results/:id', component: ResultsComponent},
   { path: 't', component: HttptestComponent}
 
 

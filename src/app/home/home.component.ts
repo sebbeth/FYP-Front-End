@@ -3,7 +3,7 @@ import { DataService } from '../data.service';
 import { InputSet } from '../data-structures/InputSet';
 import { ResultSetComponent } from './result-set/result-set.component';
 
-import { ResultSet } from '../data-structures/ResultSet';
+import { ResultObject } from '../data-structures/ResultObject';
 
 
 import { Observable } from 'rxjs';
@@ -17,7 +17,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
 
-  results: Observable<ResultSet[]>;
+  results: Observable<ResultObject[]>;
   test: string;
 
   constructor(private dataService: DataService) { }

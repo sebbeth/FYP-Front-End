@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import {Observable} from "rxjs/Observable";
 import * as _ from 'lodash';
@@ -7,7 +7,7 @@ import * as _ from 'lodash';
 import { catchError, retry } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { InputSet } from './data-structures/InputSet';
-import { ResultSet } from './data-structures/resultSet';
+import { ResultObject } from './data-structures/ResultObject';
 
   const localApiUrl = 'http://localhost/FYP-API/api.php';
   const hostedApiUrl = 'https://something.com/api.php';
@@ -69,10 +69,14 @@ export class DataService {
         .do(console.log);
   }
 
-  public getResultWithId(id): any {
+  public getResultWithId(id): Observable<ResultObject[]> {
+    const params = new HttpParams()
+    .set('limitToFirst', "1");
 
-
-  return null;
+    return this.http
+        .get<ResultObject[]>(this.getAPIUrl() + "/comparison/" + id, {params})
+        .map(data => _.values(data))
+        .do(console.log);
   }
 
   public scheduleComparison(input): number {
@@ -87,9 +91,9 @@ export class DataService {
   }
 
 
-  public getAllResults(): Observable<ResultSet[]> {
+  public getAllResults(): Observable<ResultObject[]> {
     return this.http
-        .get<ResultSet[]>(this.getAPIUrl() + "/comparison/")
+        .get<ResultObject[]>(this.getAPIUrl() + "/comparison/")
         .map(data => _.values(data))
         .do(console.log);
   }
