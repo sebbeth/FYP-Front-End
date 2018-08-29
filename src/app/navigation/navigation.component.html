@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a routerLink="/" class="navbar-brand">FYP</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+      </ul>
+    <!--  <a routerLink="/setup" class="btn btn-outline-success my-2 my-sm-0" >Create Account</a> -->
+    <span class="m-2">Account ID {{getAccountId()}}</span>
+      <span class="m-2">API Mode </span>
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button [ngClass]="{'btn-outline-primary': apiMode===0}" (click)="setAPIMode(0)" type="button" class="btn ">Local</button>
+        <button [ngClass]="{'btn-outline-primary': apiMode===1}" (click)="setAPIMode(1)" type="button" class="btn">Hosted</button>
+      </div>
+      <a routerLink="/profile"  class='btn btn-primary'>Profile</a>
+
+    </div>
+  </nav>

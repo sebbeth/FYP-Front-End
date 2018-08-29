@@ -1,0 +1,22 @@
+
+
+<app-navigation></app-navigation>
+
+<h2>Select the input sets you're going to use</h2>
+
+<br>
+
+<div class="row" *ngFor="let input of inputSets">
+  <app-input-set [inputSet]="input"></app-input-set>
+</div>
+
+<!--
+<form>
+  <div class="form-group">
+
+  <label for="textField">Input data, needs to be a valid JSON object, validation for this will come later</label>
+<input #textField="ngModel"  [(ngModel)]="textFieldContent" id='textField' name='textField' type="text" class="form-control">
+<p>{{textFieldContent}}</p>
+</div>
+<button class='btn btn-success'>Next</button>
+</form> -->
