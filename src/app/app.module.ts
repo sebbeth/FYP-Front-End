@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-//import 'rxjs/Rx';
+import 'rxjs/Rx';
 //import { Router } from '@angular/router';
 //import { ActivatedRoute } from '@angular/router';
 import { FormsModule }   from '@angular/forms';
@@ -20,7 +20,8 @@ import { NewComponent } from './new/new.component';
 import { InputSetComponent } from './new/input-set/input-set.component';
 import { ResultSetComponent } from './home/result-set/result-set.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ResultsComponent } from './results/results.component'; // From https://github.com/bootsoon/ng-circle-progress
+import { ResultsComponent } from './results/results.component';
+import { HttptestComponent } from './httptest/httptest.component'; // From https://github.com/bootsoon/ng-circle-progress
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ResultsComponent } from './results/results.component'; // From https://
     InputSetComponent,
     ResultSetComponent,
     ProfileComponent,
-    ResultsComponent
+    ResultsComponent,
+    HttptestComponent
   ],
   imports: [
     BrowserModule,

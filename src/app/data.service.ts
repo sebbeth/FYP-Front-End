@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpRequest, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+
+import {Observable} from "rxjs/Observable";
+import * as _ from 'lodash';
+
 import { catchError, retry } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { InputSet } from './data-structures/InputSet';
@@ -61,6 +64,13 @@ export class DataService {
 
   /***** API query functions *****/
 
+  public getExample(): Object {
+    return this.http
+        .get("http://localhost/FYP-API/api.php/upload/")
+        .map(data => _.values(data))
+        .do(console.log);
+  }
+
   public getResultWithId(id): any {
 
   this.http.get(this.getAPIUrl() + '/comparison/' + id).subscribe(data => {
@@ -94,31 +104,11 @@ export class DataService {
      );
   }
 
-  public getAllInputSets(): InputSet[] {
-
-
-    let first: InputSet = {
-      id: 1,
-      title: 'title',
-      data: 'this is the data'
-    }
-    let second: InputSet = {
-      id: 1,
-      title: 'title',
-      data: 'this is the data'
-    }
-
-    let output = [first,second];
-    let fromAPI = null;
-
-      this.http.get(this.getAPIUrl() + '/upload/').subscribe(data => {
-
-      fromAPI = data
-
-      });
-      console.log(fromAPI);
-      //return this.testVal;
-      return output;
+  public getAllInputSets(): Observable<InputSet[]> {
+    return this.http
+        .get<InputSet[]> ("http://localhost/FYP-API/api.php/upload/")
+        .map(data => _.values(data))
+        .do(console.log);
   }
 
 }

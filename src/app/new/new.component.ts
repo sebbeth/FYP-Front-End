@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { InputSet } from '../data-structures/InputSet';
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-new',
@@ -13,10 +14,11 @@ export class NewComponent implements OnInit {
 
   textFieldContent = '{"example":"input"}';
 
-  inputSets: InputSet[];
+  inputSets: Observable<InputSet[]>;
+  courses$: Object;
 
   ngOnInit() {
-    this.inputSets = this.dataService.getAllInputSets();
+    this.courses$ = this.dataService.getAllInputSets();
 
   }
 

@@ -5,8 +5,8 @@ import { HomeComponent }      from './home/home.component';
 import { NewComponent }      from './new/new.component';
 import { ProfileComponent }      from './profile/profile.component';
 import { ResultsComponent }      from './results/results.component';
-
 import {ConceptComponent } from './concept/concept.component';
+import { HttptestComponent } from './httptest/httptest.component';
 
 const routes: Routes = [
 
@@ -14,7 +14,8 @@ const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'new', component: NewComponent},
   { path: 'profile', component: ProfileComponent},
-  { path: 'results', component: ResultsComponent}
+  { path: 'results', component: ResultsComponent},
+  { path: 't', component: HttptestComponent}
 
 
 ];

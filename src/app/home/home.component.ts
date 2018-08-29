@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
     console.log(this.dataService.getResultWithId(10));
 //this.inputSets = this.dataService.getAllInputSets(1);
 
-    this.inputSets = this.dataService.getAllInputSets();
+    //this.inputSets = this.dataService.getAllInputSets();
   //  console.log(this.inputSets);
   //  .subscribe(data => this.inputSets = data);
     //console.log('OBJECTS' + this.inputSets.toString());

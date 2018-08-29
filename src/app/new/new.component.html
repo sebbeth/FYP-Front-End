@@ -6,9 +6,19 @@
 
 <br>
 
+<!--
 <div class="row" *ngFor="let input of inputSets">
   <app-input-set [inputSet]="input"></app-input-set>
-</div>
+</div> -->
+
+
+<ul *ngIf="courses$ | async as courses else noData">
+    <li *ngFor="let course of courses">
+        {{course.foo}}
+    </li>
+</ul>
+<ng-template #noData>No Data Available</ng-template>
+
 
 <!--
 <form>
