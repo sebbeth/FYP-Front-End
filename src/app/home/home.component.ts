@@ -3,6 +3,7 @@ import { DataService } from '../data.service';
 import { InputSet } from '../data-structures/InputSet';
 import { ResultSetComponent } from './result-set/result-set.component';
 
+import { ResultSet } from '../data-structures/ResultSet';
 
 
 import { Observable } from 'rxjs';
@@ -16,21 +17,15 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
 
-  results: Object[];
-  inputSets: InputSet[];
+  results: Observable<ResultSet[]>;
   test: string;
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    //this.results.push(this.dataService.getResultWithId(10));
-    console.log(this.dataService.getResultWithId(10));
-//this.inputSets = this.dataService.getAllInputSets(1);
 
-    //this.inputSets = this.dataService.getAllInputSets();
-  //  console.log(this.inputSets);
-  //  .subscribe(data => this.inputSets = data);
-    //console.log('OBJECTS' + this.inputSets.toString());
+    this.results = this.dataService.getAllResults();
+
   }
 
   addComp(): void {

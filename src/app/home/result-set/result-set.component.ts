@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input  } from '@angular/core';
 
 @Component({
   selector: 'app-result-set',
@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultSetComponent implements OnInit {
 
+  @Input() resultSet: Object;
+  id: string;
+  date: string;
+
   constructor() { }
 
   ngOnInit() {
+    this.id = JSON.stringify(this.resultSet);
+    this.date = this.resultSet.timestamp;
+    //this.date = this.resultSet.date;
   }
 
 }

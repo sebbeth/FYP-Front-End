@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import {Observable} from "rxjs/Observable";
 import * as _ from 'lodash';
@@ -7,14 +7,12 @@ import * as _ from 'lodash';
 import { catchError, retry } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { InputSet } from './data-structures/InputSet';
+import { ResultSet } from './data-structures/resultSet';
 
   const localApiUrl = 'http://localhost/FYP-API/api.php';
   const hostedApiUrl = 'https://something.com/api.php';
 
-  const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
-  // headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
+
 
 @Injectable()
 export class DataService {
@@ -73,40 +71,32 @@ export class DataService {
 
   public getResultWithId(id): any {
 
-  this.http.get(this.getAPIUrl() + '/comparison/' + id).subscribe(data => {
-   console.log(data);
-    return data;
-  });
+
   return null;
   }
 
   public scheduleComparison(input): number {
-    console.log('schedule');
-    this.http.post(this.getAPIUrl() + '/comparison/', input, httpOptions);
+  //  console.log('schedule');
+    //this.http.post(this.getAPIUrl() + '/comparison/', input, httpOptions);
     return 5;
   }
 
 
   public storeNewInputDataSet(accountId, data): void {
 
-    // Send the post request
-    const req = this.http.post(this.getAPIUrl() + '/upload/', {
-     account: accountId,
-     data: data
-   },httpOptions)
-     .subscribe( // Get the response
-       res => {
-         console.log(res);
-       },
-       err => { // Display errors
-         console.log("Error occured");
-       }
-     );
+  }
+
+
+  public getAllResults(): Observable<ResultSet[]> {
+    return this.http
+        .get<ResultSet[]>(this.getAPIUrl() + "/comparison/")
+        .map(data => _.values(data))
+        .do(console.log);
   }
 
   public getAllInputSets(): Observable<InputSet[]> {
     return this.http
-        .get<InputSet[]> ("http://localhost/FYP-API/api.php/upload/")
+        .get<InputSet[]> (this.getAPIUrl() + "/upload/")
         .map(data => _.values(data))
         .do(console.log);
   }

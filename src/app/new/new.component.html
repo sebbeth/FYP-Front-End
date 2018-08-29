@@ -6,18 +6,15 @@
 
 <br>
 
-<!--
+<button (click)="add()" class='btn btn-secondary'>Add a new input set</button>
+<div *ngIf="inputSets | async as inputSets else noData">
 <div class="row" *ngFor="let input of inputSets">
   <app-input-set [inputSet]="input"></app-input-set>
-</div> -->
+</div>
+</div>
+<ng-template #noData>loading...</ng-template>
+<button (click)="next()" class='btn btn-success'>Next</button>
 
-
-<ul *ngIf="courses$ | async as courses else noData">
-    <li *ngFor="let course of courses">
-        {{course.foo}}
-    </li>
-</ul>
-<ng-template #noData>No Data Available</ng-template>
 
 
 <!--
