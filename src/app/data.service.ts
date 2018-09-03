@@ -87,7 +87,21 @@ export class DataService {
 
 
   public storeNewInputDataSet(accountId, data): void {
-
+    this.http.post(this.getAPIUrl() + "/upload/",
+    {
+        "account":"1"
+    })
+    .subscribe(
+        (val) => {
+            console.log("POST call successful value returned in body",
+                        val);
+        },
+        response => {
+            console.log("POST call in error", response);
+        },
+        () => {
+            console.log("The POST observable is now completed.");
+        });
   }
 
 

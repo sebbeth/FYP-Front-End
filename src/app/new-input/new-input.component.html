@@ -1,0 +1,12 @@
+
+<app-navigation></app-navigation>
+
+<form>
+  <div class="form-group">
+
+  <label for="textField">Input data, needs to be a valid JSON object, validation for this will come later</label>
+<input #textField="ngModel"  [(ngModel)]="textFieldContent" id='textField' name='textField' type="text" class="form-control">
+<p>{{textFieldContent}}</p>
+</div>
+<button (click)="save()" class='btn btn-success'>Save</button>
+</form>
