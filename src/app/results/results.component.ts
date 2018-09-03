@@ -26,7 +26,6 @@ export class ResultsComponent implements OnInit {
   ngOnInit() {
     this.resultId = Number(this.router.url.replace('/results/',''));
     this.result = this.dataService.getResultWithId(this.resultId);
-    console.log(this.resultId);
   }
 
 }

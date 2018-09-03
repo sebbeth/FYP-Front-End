@@ -4,6 +4,7 @@
 <ul *ngIf="result | async as result else noData">
 {{result}}
 </ul>
+<line-chart [resultData]="result" ></line-chart>
 
 
 <ng-template #noData>No Data Available</ng-template>

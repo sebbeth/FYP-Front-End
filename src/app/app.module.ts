@@ -7,6 +7,7 @@ import 'rxjs/Rx';
 import { FormsModule }   from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
 //import { Headers, Response, Http, RequestOptions, URLSearchParams } from "@angular/http"
+import { ChartsModule } from 'ng2-charts';
 
 
 import { AppComponent } from './app.component';
@@ -24,6 +25,9 @@ import { ResultsComponent } from './results/results.component';
 import { HttptestComponent } from './httptest/httptest.component';
 import { NewInputComponent } from './new-input/new-input.component'; // From https://github.com/bootsoon/ng-circle-progress
 
+import { LineChartComponent } from './results/line-chart/line-chart.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +40,7 @@ import { NewInputComponent } from './new-input/new-input.component'; // From htt
     ResultSetComponent,
     ProfileComponent,
     ResultsComponent,
+    LineChartComponent,
     HttptestComponent,
     NewInputComponent
   ],
@@ -43,6 +48,7 @@ import { NewInputComponent } from './new-input/new-input.component'; // From htt
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ChartsModule,
     HttpClientModule,
     NgbModule.forRoot(),
 
