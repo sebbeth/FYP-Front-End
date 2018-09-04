@@ -15,10 +15,8 @@ export class NewComponent implements OnInit {
   textFieldContent = '{"example":"input"}';
 
   inputSets: Object;
-  courses$: Object;
 
   ngOnInit() {
-    this.courses$ = this.dataService.getAllInputSets();
     this.inputSets = this.dataService.getAllInputSets();
   }
 

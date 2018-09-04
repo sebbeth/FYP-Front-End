@@ -12,7 +12,12 @@ import { ResultObject } from './data-structures/ResultObject';
   const localApiUrl = 'http://localhost/FYP-API/api.php';
   const hostedApiUrl = 'https://something.com/api.php';
 
-
+  interface testFace {
+    id: number;
+    timestamp: string;
+    status: string;
+    data: string;
+  }
 
 @Injectable()
 export class DataService {
@@ -69,14 +74,10 @@ export class DataService {
         .do(console.log);
   }
 
-  public getResultWithId(id): Observable<ResultObject[]> {
-    const params = new HttpParams()
-    .set('limitToFirst', "1");
+  public getResultWithId(id): Observable<ResultObject> {
 
     return this.http
-        .get<ResultObject[]>(this.getAPIUrl() + "/comparison/" + id, {params})
-        .map(data => _.values(data))
-        .do(console.log);
+        .get<ResultObject>(this.getAPIUrl() + "/comparison/" + id);
   }
 
   public scheduleComparison(input): number {

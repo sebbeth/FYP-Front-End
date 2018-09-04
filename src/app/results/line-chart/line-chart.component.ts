@@ -1,16 +1,14 @@
 import { Component, Input } from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import { ResultObject } from '../../data-structures/ResultObject';
+
 @Component({
   selector: 'line-chart',
   templateUrl: './line-chart.component.html'
 })
 export class LineChartComponent {
 
-    @Input() resultData: Observable<ResultObject[]>;
-
-
-
+    @Input() resultData: ResultObject;
 
   // lineChart
   public lineChartData:Array<any> = [

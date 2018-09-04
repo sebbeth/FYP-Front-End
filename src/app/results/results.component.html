@@ -1,8 +1,8 @@
 
 <code>View results</code>
 
-<ul *ngIf="result | async as result else noData">
-{{result}}
+ <ul *ngIf="result$ | async as result$ else noData">
+{{result.timestamp}}
 </ul>
 <line-chart [resultData]="result" ></line-chart>
 

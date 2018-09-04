@@ -6,6 +6,8 @@ import {Observable} from "rxjs/Observable";
 import { ResultObject } from '../data-structures/ResultObject';
 
 
+
+
 @Component({
   selector: 'app-results',
   templateUrl: './results.component.html',
@@ -14,7 +16,8 @@ import { ResultObject } from '../data-structures/ResultObject';
 export class ResultsComponent implements OnInit {
 
   resultId: number;
-  result: Observable<ResultObject[]>;
+  result: ResultObject;
+  result$: Observable<ResultObject>;
 
 
   constructor(
@@ -25,7 +28,14 @@ export class ResultsComponent implements OnInit {
 
   ngOnInit() {
     this.resultId = Number(this.router.url.replace('/results/',''));
-    this.result = this.dataService.getResultWithId(this.resultId);
+    this.result$ = this.dataService.getResultWithId(this.resultId);
+    this.result$.subscribe(result => this.result = result);
+
+
+  //  console.log(this.result$.status);
+
+
+
   }
 
 }
