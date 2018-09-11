@@ -74,12 +74,6 @@ export class DataService {
         .do(console.log);
   }
 
-  public getResultWithId(id): Observable<ResultObject> {
-
-    return this.http
-        .get<ResultObject>(this.getAPIUrl() + "/comparison/" + id);
-  }
-
   public scheduleComparison(input): number {
   //  console.log('schedule');
     //this.http.post(this.getAPIUrl() + '/comparison/', input, httpOptions);
@@ -106,11 +100,17 @@ export class DataService {
   }
 
 
+  public getResultWithId(id): Observable<ResultObject> {
+
+    return this.http
+          .get<ResultObject>(this.getAPIUrl() + "/comparison/" + id);
+  }
+
+
   public getAllResults(): Observable<ResultObject[]> {
     return this.http
         .get<ResultObject[]>(this.getAPIUrl() + "/comparison/")
-        .map(data => _.values(data))
-        .do(console.log);
+        .map(data => _.values(data));
   }
 
   public getAllInputSets(): Observable<InputSet[]> {

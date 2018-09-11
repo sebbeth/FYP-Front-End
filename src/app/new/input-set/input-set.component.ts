@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-input-set',
@@ -9,7 +9,7 @@ export class InputSetComponent implements OnInit {
 
   title: string;
   @Input() inputSet: Object;
-
+  @Output() checked: boolean = false;
 
   constructor() { }
 
@@ -22,7 +22,11 @@ export class InputSetComponent implements OnInit {
   }
 
   private use(): void {
-
+    if (this.checked) {
+      this.checked = false;
+    } else {
+      this.checked = true;
+    }
   }
 
 }

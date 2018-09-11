@@ -29,4 +29,11 @@ export class NewComponent implements OnInit {
     this.dataService.storeNewInputDataSet(1,data);
   }
 
+  private next(): void {
+
+    console.log();
+
+
+  }
+
 }

@@ -1,6 +1,7 @@
 export class ResultObject {
   id: number;
   timestamp: string;
-  status: string; 
+  startDate: string;
+  status: string;
   data: string;
 }

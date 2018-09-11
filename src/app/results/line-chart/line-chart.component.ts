@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import { ResultObject } from '../../data-structures/ResultObject';
 
@@ -9,14 +9,10 @@ import { ResultObject } from '../../data-structures/ResultObject';
 export class LineChartComponent {
 
     @Input() resultData: ResultObject;
-
+    @Input() graphData: Array<any>;
   // lineChart
-  public lineChartData:Array<any> = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'},
-    {data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C'}
-  ];
-  public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartData:Array<any> = [];
+  public lineChartLabels:Array<any> = [];
   public lineChartOptions:any = {
     responsive: true
   };
@@ -49,15 +45,18 @@ export class LineChartComponent {
   public lineChartLegend:boolean = true;
   public lineChartType:string = 'line';
 
-  public randomize():void {
-    let _lineChartData:Array<any> = new Array(this.lineChartData.length);
-    for (let i = 0; i < this.lineChartData.length; i++) {
-      _lineChartData[i] = {data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label};
-      for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-        _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
-      }
+  ngOnInit() {
+  //  this.lineChartData = [{data: this.graphData[0], label: 'Solution A'}];
+    console.log(this.lineChartLabels);
+    let i = 0;
+      for (i = 0; i < this.graphData.length; i++) {
+        this.lineChartData.push({data: this.graphData[i], label: i});
     }
-    this.lineChartData = _lineChartData;
+    let j = 0;
+    this.resultData.startDate = '2018-08-26 22:51:26';
+    for (j = 0; j < this.graphData[0].length; j++) {
+        this.lineChartLabels.push(j);
+    }
   }
 
   // events
