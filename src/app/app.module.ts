@@ -19,13 +19,16 @@ import { ConceptComponent } from './concept/concept.component';
 import { HomeComponent } from './home/home.component';
 import { NewComponent } from './new/new.component';
 import { InputSetComponent } from './new/input-set/input-set.component';
-import { ResultSetComponent } from './home/result-set/result-set.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ResultsComponent } from './results/results.component';
 import { HttptestComponent } from './httptest/httptest.component';
 import { NewInputComponent } from './new-input/new-input.component'; // From https://github.com/bootsoon/ng-circle-progress
 
 import { LineChartComponent } from './results/line-chart/line-chart.component';
+import { SelectInputComponent } from './new/select-input/select-input.component';
+import { SelectSolutionsComponent } from './new/select-solutions/select-solutions.component';
+import { EditInputSetComponent } from './edit-input-set/edit-input-set.component';
+import { EditSolutionComponent } from './edit-solution/edit-solution.component';
 
 
 @NgModule({
@@ -37,12 +40,15 @@ import { LineChartComponent } from './results/line-chart/line-chart.component';
     HomeComponent,
     NewComponent,
     InputSetComponent,
-    ResultSetComponent,
     ProfileComponent,
     ResultsComponent,
     LineChartComponent,
     HttptestComponent,
-    NewInputComponent
+    NewInputComponent,
+    SelectInputComponent,
+    SelectSolutionsComponent,
+    EditInputSetComponent,
+    EditSolutionComponent
   ],
   imports: [
     BrowserModule,

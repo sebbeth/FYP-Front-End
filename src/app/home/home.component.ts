@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../data.service';
 import { InputSet } from '../data-structures/InputSet';
-import { ResultSetComponent } from './result-set/result-set.component';
 
 import { ResultObject } from '../data-structures/ResultObject';
 
