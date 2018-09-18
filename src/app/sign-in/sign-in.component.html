@@ -1,0 +1,32 @@
+
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-2">
+    </div>
+    <div class="col-6">
+<form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input [(ngModel)]="email" name="email" type="email" class="form-control" id="email" placeholder="Enter email" required>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input [(ngModel)]="password" name="password" type="password" class="form-control" id="password" placeholder="Password" required>
+  </div>
+  <div class="alert-danger m-3">
+    {{errorMessage}}
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="busy">
+  <ng-template [ngIf]="!busy">Sign in</ng-template>
+  <ng-template [ngIf]="busy">Signing in, please wait...</ng-template>
+</button>
+</form>
+</div>
+</div>
+</div>
+
+
+
+
+<a>Sign Up</a>

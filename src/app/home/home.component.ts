@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../data.service';
+import { SessionService } from '../session.service';
+
 import { InputSet } from '../data-structures/InputSet';
 
 import { ResultObject } from '../data-structures/ResultObject';
@@ -19,7 +21,7 @@ export class HomeComponent implements OnInit {
   results: Observable<ResultObject[]>;
   test: string;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private sessionService: SessionService) { }
 
   ngOnInit() {
 

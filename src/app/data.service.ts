@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { SessionService } from './session.service';
 
 import {Observable} from "rxjs/Observable";
 import * as _ from 'lodash';
@@ -31,7 +32,7 @@ export class DataService {
 
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private sessionService: SessionService) { }
 
 
   public setAPIMode(mode) {
@@ -61,9 +62,8 @@ export class DataService {
   }
 
 
-  public getAccountId(): number {
-    return 1; //TODO implement this
-  }
+
+
 
   /***** API query functions *****/
 
@@ -73,6 +73,7 @@ export class DataService {
         .map(data => _.values(data))
         .do(console.log);
   }
+
 
   public scheduleComparison(input): number {
   //  console.log('schedule');

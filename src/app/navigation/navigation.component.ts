@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { SessionService } from '../session.service';
 
 @Component({
   selector: 'app-navigation',
@@ -10,7 +11,7 @@ export class NavigationComponent implements OnInit {
 
   apiMode: number;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private sessionService: SessionService) { }
 
   ngOnInit() {
     this.apiMode = this.getAPIMode();
@@ -26,7 +27,7 @@ export class NavigationComponent implements OnInit {
   }
 
   getAccountId(): number {
-    return this.dataService.getAccountId();
+    return this.sessionService.getAccountId();
   }
 
 }
