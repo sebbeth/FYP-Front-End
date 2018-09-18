@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
+import { Account } from './data-structures/account';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
 
-  accountId = 1;
+  account: Account;
   signedIn = false;
   val = 0;
 
-  constructor() { }
+  constructor() {  }
 
 
   public isSignedIn(): boolean {
@@ -22,12 +23,19 @@ export class SessionService {
   }
 
   public getAccountId(): number {
-    return this.accountId;
+    return this.account.id;
+  }
+
+  public getAccount(): Account {
+
+    return this.account;
   }
 
   public signIn(email,password): boolean {
-    if (email == 's@s.com') {
-      this.accountId = 7;
+    if (email == 'me@sebbrown.net') {
+      this.account = new Account();
+      this.account.id = 1;
+      this.account.email = email;
       this.signedIn = true;
       return true;
     }
@@ -36,6 +44,9 @@ export class SessionService {
 
 
   public signOut() {
+    // Destroy the account object
+    this.account = null;
+    this.signedIn = false;
 
   }
 }

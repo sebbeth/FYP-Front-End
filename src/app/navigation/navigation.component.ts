@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { SessionService } from '../session.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-navigation',
@@ -11,7 +12,7 @@ export class NavigationComponent implements OnInit {
 
   apiMode: number;
 
-  constructor(private dataService: DataService, private sessionService: SessionService) { }
+  constructor(private dataService: DataService, private sessionService: SessionService,private router: Router) { }
 
   ngOnInit() {
     this.apiMode = this.getAPIMode();
@@ -28,6 +29,15 @@ export class NavigationComponent implements OnInit {
 
   getAccountId(): number {
     return this.sessionService.getAccountId();
+  }
+
+  isSignedIn(): boolean {
+    return this.sessionService.isSignedIn();
+  }
+
+  signOut() {
+    this.sessionService.signOut();
+    this.router.navigate(['sign-in']);
   }
 
 }

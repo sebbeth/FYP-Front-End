@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   constructor(private dataService: DataService, private sessionService: SessionService) { }
 
   ngOnInit() {
-
+    this.sessionService.signIn("me@sebbrown.net","pwd");
     this.results = this.dataService.getAllResults();
 
   }
