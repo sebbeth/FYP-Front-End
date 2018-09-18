@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { SessionService } from './session.service';
 import { Observable } from 'rxjs/Observable';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CanActivateGuard implements CanActivate {
 
   constructor(
@@ -17,6 +19,7 @@ export class CanActivateGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
     if (!this.sessionService.isSignedIn()) {
+      console.log(this.sessionService.foo());
       this.router.navigate(['/sign-in']);
       return false;
     }

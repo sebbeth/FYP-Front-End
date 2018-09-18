@@ -13,6 +13,7 @@ import { ChartsModule } from 'ng2-charts';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { DataService } from './data.service';
+import { SessionService } from './session.service';
 import { LandingComponent } from './landing/landing.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { ConceptComponent } from './concept/concept.component';
@@ -61,7 +62,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
     NgbModule.forRoot(),
 
   ],
-  providers: [DataService],
+  providers: [DataService,SessionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

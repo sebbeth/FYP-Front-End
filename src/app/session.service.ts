@@ -7,6 +7,7 @@ export class SessionService {
 
   accountId = 1;
   signedIn = false;
+  val = 0;
 
   constructor() { }
 
@@ -15,6 +16,10 @@ export class SessionService {
     return this.signedIn;
   }
 
+  public foo(): number {
+    this.val++;
+    return this.val;
+  }
 
   public getAccountId(): number {
     return this.accountId;
