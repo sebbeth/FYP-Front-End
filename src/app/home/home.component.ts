@@ -24,13 +24,44 @@ export class HomeComponent implements OnInit {
   constructor(private dataService: DataService, private sessionService: SessionService) { }
 
   ngOnInit() {
-    this.sessionService.signIn("me@sebbrown.net","pwd");
+  //  this.sessionService.signIn("me@sebbrown.net","pwd");
     this.results = this.dataService.getAllResults();
-
   }
 
   addComp(): void {
     this.dataService.scheduleComparison('{"input_id":"1","parameters":{"foo":"bar"}}');
+  }
+
+  /*
+
+  */
+  generateProviderIconsForResult(result: ResultObject): string[] {
+
+    let output = [];
+    result.providers.forEach((provider) => {
+      switch(provider) {
+        case 0: {
+          output.push('Custom');
+          break;
+        }
+        case 1: {
+          output.push('AWS');
+          break;
+        }
+        case 2: {
+          output.push('Google Cloud');
+          break;
+        }
+        default: {
+          //statements;
+          break;
+        }
+      }
+    });
+
+
+
+    return output;
   }
 
 }

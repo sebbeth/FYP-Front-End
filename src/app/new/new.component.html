@@ -4,6 +4,46 @@
 
 <app-select-input></app-select-input>
 
+<div class="container">
+  <div class="row mt-5">
+    <div class="col">
+
+<div *ngIf="stage == 0">
+  <h2>Select the input sets you're going to use</h2>
+
+  <br>
+
+  <button (click)="add()" class='btn btn-secondary'>Add a new input set</button>
+  <br>
+  <br>
+  <div *ngIf="inputSets | async as inputSets else noData">
+  <div class="row" *ngFor="let input of inputSets">
+    <app-input-set [inputSet]="input"></app-input-set>
+  </div>
+  </div>
+  <ng-template #noData>loading...</ng-template>
+<a routerLink="/new/1" onclick="location.reload();" class="btn btn-lg btn-primary float-right">Next  </a>
+</div>
+<div *ngIf="stage == 1">
+  <code>Select Prodivers, then select Solutions to compare...</code><br>
+  <code>Alternatively, edit any of your custom solutions</code>
+  <a routerLink="/new/2" onclick="location.reload();"   class="btn btn-lg btn-primary float-right">Next  </a>
+</div>
+<div *ngIf="stage == 2" class="text-center">
+  <h1 class="display-4 ">Analysing...</h1>
+  <br>
+  <br>
+  <h5>Sit tight, your results are being calculated</h5>
+  <h5>Estimated time to completion: 3 minutes</h5>
+  <br>
+  <br>
+  <button class="btn btn-lg btn-primary" disabled>Calculating...</button>
+
+</div>
+
+</div>
+</div>
+</div>
 <!--
 <h2>Select the input sets you're going to use</h2>
 

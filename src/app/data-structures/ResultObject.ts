@@ -4,4 +4,6 @@ export class ResultObject {
   startDate: string;
   status: string;
   data: string;
+  providers: number[];
+
 }

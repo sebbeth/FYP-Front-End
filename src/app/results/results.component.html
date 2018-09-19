@@ -1,14 +1,23 @@
 <app-navigation></app-navigation>
 
-<code>View results</code>
+<div class="container">
+  <div class="row mt-5">
+    <div style="width:100%">
 
- <ul *ngIf="result$ | async as result$ else noData">
-{{result$.timestamp}}
-{{result$.data}}
-<line-chart [resultData]="result"
-            [graphData]="graphData" ></line-chart>
+      <h1>View results</h1>
+      <br><br>
+      <ul *ngIf="result$ | async as result$ else noData">
+        <p>Date: {{result$.timestamp}}</p>
 
-</ul>
+        <line-chart [resultData]="result"
+        [graphData]="graphData" ></line-chart>
+
+      </ul>
 
 
-<ng-template #noData>No Data Available</ng-template>
+      <ng-template #noData>No Data Available</ng-template>
+
+
+    </div>
+  </div>
+</div>

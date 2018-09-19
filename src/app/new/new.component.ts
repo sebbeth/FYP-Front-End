@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { InputSet } from '../data-structures/InputSet';
 import {Observable} from "rxjs/Observable";
@@ -10,13 +11,17 @@ import {Observable} from "rxjs/Observable";
 })
 export class NewComponent implements OnInit {
 
-  constructor(private dataService: DataService) { }
+  constructor(
+    private dataService: DataService,
+    private router: Router) { }
 
   textFieldContent = '{"example":"input"}';
-
+  stage: number;
+  busy: boolean = false;
   inputSets: Object;
 
   ngOnInit() {
+    this.stage = Number(this.router.url.replace('/new/',''));
     this.inputSets = this.dataService.getAllInputSets();
   }
 
@@ -29,11 +34,6 @@ export class NewComponent implements OnInit {
     this.dataService.storeNewInputDataSet(1,data);
   }
 
-  private next(): void {
 
-    console.log();
-
-
-  }
 
 }
