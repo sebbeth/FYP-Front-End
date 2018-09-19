@@ -21,6 +21,9 @@ export class NewComponent implements OnInit {
     selectSolutionsIsVisible: boolean = false;
     awaitResultIsVisible: boolean = false;
     breadcrumbCss: string[];
+
+    test: Object;
+
   constructor(
     private dataService: DataService,
     private router: Router) { }
@@ -33,7 +36,7 @@ export class NewComponent implements OnInit {
   }
 
 
-  public uploadDataSet(): void {
+   uploadDataSet(): void {
     if (this.textFieldContent === '') {
       return null;
     }
@@ -43,24 +46,24 @@ export class NewComponent implements OnInit {
 
 
 
-  private next(): void {
+   next(): void {
     this.stage++;
     this.refreshStage();
   }
 
-  private hasNext(): boolean {
+   hasNext(): boolean {
     if (this.stage < 2) {
       return true;
     }
     return false;
   }
 
-  private previous(): void {
+   previous(): void {
     this.stage--;
     this.refreshStage();
   }
 
-  private hasPrevious(): boolean {
+   hasPrevious(): boolean {
     if ( this.stage == 1 ) {
       return true;
     }
@@ -71,13 +74,14 @@ export class NewComponent implements OnInit {
   This function updates the variables used to define which page in the wizard is being displayed.
   The breadcrumb's state is also set here.
   */
-  private refreshStage(): void {
+   refreshStage(): void {
     switch(this.stage) {
       case 0: {
         this.selectInputIsVisible = true;
         this.selectSolutionsIsVisible = false;
         this.awaitResultIsVisible = false;
         this.breadcrumbCss = ['blue-crumb','light-blue-crumb','light-blue-crumb'];
+
         break;
       }
       case 1: {
@@ -92,6 +96,10 @@ export class NewComponent implements OnInit {
         this.selectSolutionsIsVisible = false;
         this.awaitResultIsVisible = true;
         this.breadcrumbCss = ['light-blue-crumb','light-blue-crumb','blue-crumb'];
+
+        // Send the comparison to the API to be computed
+        this.executeComparison();
+
         break;
       }
       default: {
@@ -101,6 +109,10 @@ export class NewComponent implements OnInit {
     }
   }
 
+
+  executeComparison(): void {
+      this.test = this.dataService.scheduleComparison('{"empty":"comparison"}'));
+  }
 
 
 

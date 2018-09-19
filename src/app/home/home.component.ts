@@ -41,11 +41,11 @@ export class HomeComponent implements OnInit {
     result.providers.forEach((provider) => {
       switch(provider) {
         case 0: {
-          output.push('Custom');
+          output.push('<i class="fas fa-server"></i>');
           break;
         }
         case 1: {
-          output.push('AWS');
+          output.push('<i class="fab fa-aws"></i>');
           break;
         }
         case 2: {

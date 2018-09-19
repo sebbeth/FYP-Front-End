@@ -22,6 +22,9 @@
           <app-select-solutions [visible]="selectSolutionsIsVisible"></app-select-solutions>
           <app-await-result [visible]="awaitResultIsVisible"></app-await-result>
           <!-- nav buttons -->
+          <div *ngIf="test | async as test">
+          {{test}}
+        </div>
           <button *ngIf="hasNext()" (click)="next()"   class="btn btn-lg btn-primary float-right">Next</button>
           <button *ngIf="hasPrevious()" (click)="previous()"   class="btn btn-lg btn-outline-secondary float-right mr-2">Back</button>
         </div>

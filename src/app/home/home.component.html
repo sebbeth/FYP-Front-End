@@ -2,12 +2,6 @@
 <app-navigation></app-navigation>
 <div class="container">
 <a routerLink="/new"  class='btn btn-primary mt-5'>Add Comparison</a>
-<!--Input data sets
-
-<span class="mb-4"></span>
-  <div class="row" *ngFor="let input of inputSets">
-    <app-input-set [inputSet]="input"></app-input-set>
-  </div>-->
 <br>
 
 <div class="col-2">
@@ -22,14 +16,13 @@
 <div *ngIf="results | async as results else noData">
 <div class="row" *ngFor="let result of results">
 
-
   <div class="col">
     <div class="alert alert-primary">
       <span>{{result.timestamp}}</span>
       <span></span>
       <span class="mr-5">  </span>
       <span *ngFor="let icon of generateProviderIconsForResult(result)">
-        <span class="badge badge-light ml-1" data-toggle="tooltip" data-placement="top" title="Tooltip on top">{{icon}}</span>
+        <span [innerHTML]="icon" class="badge badge-light ml-2" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></span>
       </span>
       <span class="mr-5">  </span>
       <a  routerLink="/results/{{result.id}}"  class='btn btn-primary'>View</a>

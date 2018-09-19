@@ -75,18 +75,28 @@ export class DataService {
   }
 
 
-  public scheduleComparison(input): number {
-  //  console.log('schedule');
-    //this.http.post(this.getAPIUrl() + '/comparison/', input, httpOptions);
-    return 5;
+  public scheduleComparison(input): Observable<number> {
+
+    // Parse the input data first
+
+    let payload = {
+      input_id:2,
+      solutions:[1,2],
+      parameters:{
+		      foo:'bar'
+	    }
+    };
+
+
+    return this.http.post<number>(this.getAPIUrl() + '/comparison/', input)
+    .map(data => data.id)
+    .do(console.log);
   }
 
 
   public storeNewInputDataSet(accountId, data): void {
     this.http.post(this.getAPIUrl() + "/upload/",
-    {
-        "account":"1"
-    })
+    '{"account":"1","data":'+data+'}')
     .subscribe(
         (val) => {
             console.log("POST call successful value returned in body",
