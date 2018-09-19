@@ -5,53 +5,38 @@
 
 
 <div class="container">
-  <div class="row mt-5">
-    <div class="col">
 
-<div *ngIf="stage == 0">
-
-</div>
-<div *ngIf="stage == 1">
-
-  <!-- <a routerLink="/new/2" onclick="location.reload();"   class="btn btn-lg btn-primary float-right">Next  </a> -->
-</div>
-<div *ngIf="stage == 2" class="text-center">
-
-
-</div>
-
-
-<app-select-input [visible]="selectInputIsVisible" [inputSets]="inputSets"></app-select-input>
-<app-select-solutions [visible]="selectSolutionsIsVisible"></app-select-solutions>
-<app-await-result [visible]="awaitResultIsVisible"></app-await-result>
-
-<button *ngIf="hasNext()" (click)="next()"   class="btn btn-lg btn-primary float-right">Next</button>
-</div>
-</div>
-</div>
-<!--
-<h2>Select the input sets you're going to use</h2>
-
-<br>
-
-<button (click)="add()" class='btn btn-secondary'>Add a new input set</button>
-<div *ngIf="inputSets | async as inputSets else noData">
-<div class="row" *ngFor="let input of inputSets">
-  <app-input-set [inputSet]="input"></app-input-set>
-</div>
-</div>
-<ng-template #noData>loading...</ng-template>
-<button (click)="next()" class='btn btn-success'>Next</button>
+  <div class="row justify-content-md-center">
+    <div class="col-7">
+      <!-- Breadcrumb -->
+      <ul class="custom-breadcrumb">
+        <li [ngClass]="breadcrumbCss[0]">Requirements</li>
+        <li [ngClass]="breadcrumbCss[1]">Platforms</li>
+        <li [ngClass]="breadcrumbCss[2]">Calculate</li>
+      </ul>
+    </div>
+  </div>
+      <div class="row mt-5">
+        <div class="col">
+          <app-select-input [visible]="selectInputIsVisible" [inputSets]="inputSets"></app-select-input>
+          <app-select-solutions [visible]="selectSolutionsIsVisible"></app-select-solutions>
+          <app-await-result [visible]="awaitResultIsVisible"></app-await-result>
+          <!-- nav buttons -->
+          <button *ngIf="hasNext()" (click)="next()"   class="btn btn-lg btn-primary float-right">Next</button>
+          <button *ngIf="hasPrevious()" (click)="previous()"   class="btn btn-lg btn-outline-secondary float-right mr-2">Back</button>
+        </div>
+      </div>
+    </div>
 
 
--->
-<!--
-<form>
-  <div class="form-group">
 
-  <label for="textField">Input data, needs to be a valid JSON object, validation for this will come later</label>
-<input #textField="ngModel"  [(ngModel)]="textFieldContent" id='textField' name='textField' type="text" class="form-control">
-<p>{{textFieldContent}}</p>
-</div>
-<button class='btn btn-success'>Next</button>
+    <!--
+    <form>
+    <div class="form-group">
+
+    <label for="textField">Input data, needs to be a valid JSON object, validation for this will come later</label>
+    <input #textField="ngModel"  [(ngModel)]="textFieldContent" id='textField' name='textField' type="text" class="form-control">
+    <p>{{textFieldContent}}</p>
+  </div>
+  <button class='btn btn-success'>Next</button>
 </form> -->

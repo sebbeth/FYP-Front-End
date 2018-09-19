@@ -20,7 +20,7 @@ export class NewComponent implements OnInit {
     selectInputIsVisible: boolean = false;
     selectSolutionsIsVisible: boolean = false;
     awaitResultIsVisible: boolean = false;
-
+    breadcrumbCss: string[];
   constructor(
     private dataService: DataService,
     private router: Router) { }
@@ -29,6 +29,7 @@ export class NewComponent implements OnInit {
     this.stage = 0;
     this.selectInputIsVisible = true;
     this.inputSets = this.dataService.getAllInputSets();
+    this.refreshStage();
   }
 
 
@@ -43,21 +44,54 @@ export class NewComponent implements OnInit {
 
 
   private next(): void {
+    this.stage++;
+    this.refreshStage();
+  }
+
+  private hasNext(): boolean {
+    if (this.stage < 2) {
+      return true;
+    }
+    return false;
+  }
+
+  private previous(): void {
+    this.stage--;
+    this.refreshStage();
+  }
+
+  private hasPrevious(): boolean {
+    if ( this.stage == 1 ) {
+      return true;
+    }
+    return false;
+  }
+
+  /*
+  This function updates the variables used to define which page in the wizard is being displayed.
+  The breadcrumb's state is also set here.
+  */
+  private refreshStage(): void {
     switch(this.stage) {
       case 0: {
-        this.selectInputIsVisible = false;
-        this.selectSolutionsIsVisible = true;
-        this.stage++;
+        this.selectInputIsVisible = true;
+        this.selectSolutionsIsVisible = false;
+        this.awaitResultIsVisible = false;
+        this.breadcrumbCss = ['blue-crumb','light-blue-crumb','light-blue-crumb'];
         break;
       }
       case 1: {
-        this.selectSolutionsIsVisible = false;
-        this.awaitResultIsVisible = true;
-        this.stage++;
+        this.selectInputIsVisible = false;
+        this.selectSolutionsIsVisible = true;
+        this.awaitResultIsVisible = false;
+        this.breadcrumbCss = ['light-blue-crumb','blue-crumb','light-blue-crumb'];
         break;
       }
       case 2: {
-
+        this.selectInputIsVisible = false;
+        this.selectSolutionsIsVisible = false;
+        this.awaitResultIsVisible = true;
+        this.breadcrumbCss = ['light-blue-crumb','light-blue-crumb','blue-crumb'];
         break;
       }
       default: {
@@ -67,13 +101,7 @@ export class NewComponent implements OnInit {
     }
   }
 
-  private previous(): void {
 
-  }
-
-  private hasNext(): boolean {
-    return true;
-  }
 
 
 
