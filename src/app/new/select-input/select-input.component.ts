@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { InputSet } from '../../data-structures/InputSet';
 
 @Component({
   selector: 'app-select-input',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./select-input.component.css']
 })
 export class SelectInputComponent implements OnInit {
+
+  @Input() visible: boolean;
+  @Input() inputSets: Object;
 
   constructor() { }
 

@@ -31,6 +31,7 @@ import { SelectSolutionsComponent } from './new/select-solutions/select-solution
 import { EditInputSetComponent } from './edit-input-set/edit-input-set.component';
 import { EditSolutionComponent } from './edit-solution/edit-solution.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { AwaitResultComponent } from './new/await-result/await-result.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
     SelectSolutionsComponent,
     EditInputSetComponent,
     EditSolutionComponent,
-    SignInComponent
+    SignInComponent,
+    AwaitResultComponent
   ],
   imports: [
     BrowserModule,

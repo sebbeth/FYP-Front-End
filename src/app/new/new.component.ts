@@ -11,17 +11,23 @@ import {Observable} from "rxjs/Observable";
 })
 export class NewComponent implements OnInit {
 
+
+    textFieldContent = '{"example":"input"}';
+    stage: number;
+    busy: boolean = false;
+    inputSets: Object;
+    showSelectInput: boolean = true;
+    selectInputIsVisible: boolean = false;
+    selectSolutionsIsVisible: boolean = false;
+    awaitResultIsVisible: boolean = false;
+
   constructor(
     private dataService: DataService,
     private router: Router) { }
 
-  textFieldContent = '{"example":"input"}';
-  stage: number;
-  busy: boolean = false;
-  inputSets: Object;
-
   ngOnInit() {
-    this.stage = Number(this.router.url.replace('/new/',''));
+    this.stage = 0;
+    this.selectInputIsVisible = true;
     this.inputSets = this.dataService.getAllInputSets();
   }
 
@@ -33,6 +39,42 @@ export class NewComponent implements OnInit {
     let data = JSON.parse(this.textFieldContent);
     this.dataService.storeNewInputDataSet(1,data);
   }
+
+
+
+  private next(): void {
+    switch(this.stage) {
+      case 0: {
+        this.selectInputIsVisible = false;
+        this.selectSolutionsIsVisible = true;
+        this.stage++;
+        break;
+      }
+      case 1: {
+        this.selectSolutionsIsVisible = false;
+        this.awaitResultIsVisible = true;
+        this.stage++;
+        break;
+      }
+      case 2: {
+
+        break;
+      }
+      default: {
+        //statements;
+        break;
+      }
+    }
+  }
+
+  private previous(): void {
+
+  }
+
+  private hasNext(): boolean {
+    return true;
+  }
+
 
 
 
