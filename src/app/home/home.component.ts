@@ -24,12 +24,7 @@ export class HomeComponent implements OnInit {
   constructor(private dataService: DataService, private sessionService: SessionService) { }
 
   ngOnInit() {
-    this.sessionService.signIn("me@sebbrown.net","pwd"); // TODO remove this, this is only for development
     this.results = this.dataService.getAllResults();
-  }
-
-  addComp(): void {
-    this.dataService.scheduleComparison('{"input_id":"1","parameters":{"foo":"bar"}}');
   }
 
   /*

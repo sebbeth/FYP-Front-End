@@ -15,10 +15,10 @@ const routes: Routes = [
 
   { path: 'start', component: LandingComponent },
   { path: '', component: HomeComponent},
-/*  { path: 'new', component: NewComponent, canActivate: [
+  { path: 'new', component: NewComponent, canActivate: [
       CanActivateGuard
-    ],},*/
-    { path: 'new', component: NewComponent},
+    ]},
+  //  { path: 'new', component: NewComponent},
   { path: 'profile', component: ProfileComponent},
   { path: 'results/:id', component: ResultsComponent},
   { path: 'sign-in', component: SignInComponent},
