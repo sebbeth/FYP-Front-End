@@ -25,17 +25,16 @@ export class NewComponent implements OnInit {
     test: Object;
 
   constructor(
-    private dataService: DataService,
+    public dataService: DataService,
     private router: Router) { }
 
   ngOnInit() {
-    this.stage = 0;
+    this.stage = 1;
     this.selectInputIsVisible = true;
-    this.inputSets = this.dataService.getAllInputSets();
     this.refreshStage();
   }
 
-
+  // TODO remove this
    uploadDataSet(): void {
     if (this.textFieldContent === '') {
       return null;
@@ -45,7 +44,7 @@ export class NewComponent implements OnInit {
   }
 
 
-
+ /* NAV controls */
    next(): void {
     this.stage++;
     this.refreshStage();
@@ -111,8 +110,9 @@ export class NewComponent implements OnInit {
 
 
   executeComparison(): void {
-      this.test = this.dataService.scheduleComparison('{"empty":"comparison"}'));
+      this.test = this.dataService.scheduleComparison('{"empty":"comparison"}');
   }
+
 
 
 

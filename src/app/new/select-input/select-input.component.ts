@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { InputSet } from '../../data-structures/InputSet';
+import { DataService } from '../../data.service';
 
 @Component({
   selector: 'app-select-input',
@@ -9,11 +10,13 @@ import { InputSet } from '../../data-structures/InputSet';
 export class SelectInputComponent implements OnInit {
 
   @Input() visible: boolean;
-  @Input() inputSets: Object;
+  @Input() dataService: DataService;
+  inputSets: Object;
 
   constructor() { }
 
   ngOnInit() {
+    this.inputSets = this.dataService.getAllInputSets();
   }
 
 }

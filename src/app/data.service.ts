@@ -20,6 +20,11 @@ import { ResultObject } from './data-structures/ResultObject';
     data: string;
   }
 
+  interface queuedTask {
+    id: number;
+    status: string;
+}
+
 @Injectable()
 export class DataService {
 
@@ -88,7 +93,7 @@ export class DataService {
     };
 
 
-    return this.http.post<number>(this.getAPIUrl() + '/comparison/', input)
+    return this.http.post<queuedTask>(this.getAPIUrl() + '/comparison/', input)
     .map(data => data.id)
     .do(console.log);
   }
@@ -127,6 +132,13 @@ export class DataService {
   public getAllInputSets(): Observable<InputSet[]> {
     return this.http
         .get<InputSet[]> (this.getAPIUrl() + "/upload/")
+        .map(data => _.values(data))
+        .do(console.log);
+  }
+
+  public getAllProviders(): Observable<Object[]> {
+    return this.http
+        .get(this.getAPIUrl() + "/provider/")
         .map(data => _.values(data))
         .do(console.log);
   }

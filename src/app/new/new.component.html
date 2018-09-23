@@ -18,8 +18,8 @@
   </div>
       <div class="row mt-5">
         <div class="col">
-          <app-select-input [visible]="selectInputIsVisible" [inputSets]="inputSets"></app-select-input>
-          <app-select-solutions [visible]="selectSolutionsIsVisible"></app-select-solutions>
+          <app-select-input [visible]="selectInputIsVisible" [dataService]="dataService"></app-select-input>
+          <app-select-providers [visible]="selectSolutionsIsVisible" [dataService]="dataService"></app-select-providers>
           <app-await-result [visible]="awaitResultIsVisible"></app-await-result>
           <!-- nav buttons -->
           <div *ngIf="test | async as test">

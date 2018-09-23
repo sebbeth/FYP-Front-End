@@ -27,11 +27,12 @@ import { NewInputComponent } from './new-input/new-input.component'; // From htt
 
 import { LineChartComponent } from './results/line-chart/line-chart.component';
 import { SelectInputComponent } from './new/select-input/select-input.component';
-import { SelectSolutionsComponent } from './new/select-solutions/select-solutions.component';
+import { SelectProvidersComponent } from './new/select-providers/select-providers.component';
 import { EditInputSetComponent } from './edit-input-set/edit-input-set.component';
 import { EditSolutionComponent } from './edit-solution/edit-solution.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { AwaitResultComponent } from './new/await-result/await-result.component';
+import { CustomSolutionsComponent } from './custom-solutions/custom-solutions.component';
 
 
 @NgModule({
@@ -49,11 +50,12 @@ import { AwaitResultComponent } from './new/await-result/await-result.component'
     HttptestComponent,
     NewInputComponent,
     SelectInputComponent,
-    SelectSolutionsComponent,
+    SelectProvidersComponent,
     EditInputSetComponent,
     EditSolutionComponent,
     SignInComponent,
-    AwaitResultComponent
+    AwaitResultComponent,
+    CustomSolutionsComponent
   ],
   imports: [
     BrowserModule,
