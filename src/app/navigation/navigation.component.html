@@ -8,12 +8,12 @@
       <ul class="navbar-nav mr-auto">
       </ul>
     <!--  <a routerLink="/setup" class="btn btn-outline-success my-2 my-sm-0" >Create Account</a> -->
-  <!--  <span class="m-2">Account ID {{getAccountId()}}</span>
+    <span class="m-2">Account ID {{getAccountId()}}</span>
       <span class="m-2">API Mode </span>
       <div class="btn-group" role="group" aria-label="Basic example">
         <button [ngClass]="{'btn-outline-primary': apiMode===0}" (click)="setAPIMode(0)" type="button" class="btn ">Local</button>
         <button [ngClass]="{'btn-outline-primary': apiMode===1}" (click)="setAPIMode(1)" type="button" class="btn">Hosted</button>
-      </div> -->
+      </div>
       <div *ngIf="isSignedIn();else signedOut">
         <a routerLink="/profile"  class='btn btn-primary'>Profile</a>
         <button (click)="signOut()" class="btn btn-outline-primary ml-1">Sign Out</button>

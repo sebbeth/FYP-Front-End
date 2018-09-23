@@ -7,7 +7,6 @@ import { ProfileComponent }      from './profile/profile.component';
 import { ResultsComponent }      from './results/results.component';
 import {ConceptComponent } from './concept/concept.component';
 import { HttptestComponent } from './httptest/httptest.component';
-import { NewInputComponent } from './new-input/new-input.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { CustomSolutionsComponent} from './custom-solutions/custom-solutions.component';
 import { CanActivateGuard } from './can-activate.guard';
@@ -22,7 +21,6 @@ const routes: Routes = [
     { path: 'new', component: NewComponent},
   { path: 'profile', component: ProfileComponent},
   { path: 'results/:id', component: ResultsComponent},
-  { path: 'new-input', component: NewInputComponent},
   { path: 'sign-in', component: SignInComponent},
   { path: 'my-resources', component: CustomSolutionsComponent},
   { path: 't', component: HttptestComponent}

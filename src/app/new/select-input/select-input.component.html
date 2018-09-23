@@ -1,15 +1,35 @@
 <div *ngIf="visible">
-  <h2>Select the input sets you're going to use</h2>
+  <div *ngIf="addNewInput;then newInput else existingInput"></div>
 
-  <br>
+  <ng-template #newInput>
 
-  <button (click)="add()" class='btn btn-secondary'>Add a new input set</button>
-  <br>
-  <br>
-  <div *ngIf="inputSets | async as inputSets else noData">
-  <div class="row" *ngFor="let input of inputSets">
-    <app-input-set [inputSet]="input"></app-input-set>
-  </div>
-  </div>
-  <ng-template #noData>loading...</ng-template>
+    <form>
+      <div class="form-group">
+        <h2>New Input</h2>
+
+      <label for="textField">Input data, needs to be a valid JSON object, validation for this will come later</label>
+    <input #textField="ngModel"  [(ngModel)]="textFieldContent" id='textField' name='textField' type="text" class="form-control">
+    <p>{{textFieldContent}}</p>
+    </div>
+    <button (click)="setMode(0)" class='btn btn-secondary'>Close</button>
+    <button (click)="saveNewInput()" class='btn btn-success'>Save</button>
+    </form>
+
+  </ng-template>
+
+  <ng-template #existingInput>
+    <h2>Select the input sets you're going to use</h2>
+
+    <br>
+    <button (click)="setMode(1)" class='btn btn-secondary'>Add a new input set</button>
+    <br>
+    <br>
+    <div *ngIf="inputSets | async as inputSets else noData">
+    <div class="row" *ngFor="let input of inputSets">
+      <app-input-set [inputSet]="input"></app-input-set>
+    </div>
+    </div>
+    <ng-template #noData>loading...</ng-template>
+  </ng-template>
+
 </div>

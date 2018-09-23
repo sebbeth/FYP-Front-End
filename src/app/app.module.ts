@@ -23,8 +23,6 @@ import { InputSetComponent } from './new/input-set/input-set.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ResultsComponent } from './results/results.component';
 import { HttptestComponent } from './httptest/httptest.component';
-import { NewInputComponent } from './new-input/new-input.component'; // From https://github.com/bootsoon/ng-circle-progress
-
 import { LineChartComponent } from './results/line-chart/line-chart.component';
 import { SelectInputComponent } from './new/select-input/select-input.component';
 import { SelectProvidersComponent } from './new/select-providers/select-providers.component';
@@ -48,7 +46,6 @@ import { CustomSolutionsComponent } from './custom-solutions/custom-solutions.co
     ResultsComponent,
     LineChartComponent,
     HttptestComponent,
-    NewInputComponent,
     SelectInputComponent,
     SelectProvidersComponent,
     EditInputSetComponent,

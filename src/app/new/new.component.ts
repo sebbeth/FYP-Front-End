@@ -16,7 +16,8 @@ export class NewComponent implements OnInit {
     stage: number;
     busy: boolean = false;
     inputSets: Object;
-    showSelectInput: boolean = true;
+    showSelectInput: boolean = false;
+    newInputIsVisible: boolean = false;
     selectInputIsVisible: boolean = false;
     selectSolutionsIsVisible: boolean = false;
     awaitResultIsVisible: boolean = false;
@@ -29,7 +30,7 @@ export class NewComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.stage = 1;
+    this.stage = 0;
     this.selectInputIsVisible = true;
     this.refreshStage();
   }
@@ -95,10 +96,6 @@ export class NewComponent implements OnInit {
         this.selectSolutionsIsVisible = false;
         this.awaitResultIsVisible = true;
         this.breadcrumbCss = ['light-blue-crumb','light-blue-crumb','blue-crumb'];
-
-        // Send the comparison to the API to be computed
-        this.executeComparison();
-
         break;
       }
       default: {
@@ -110,7 +107,7 @@ export class NewComponent implements OnInit {
 
 
   executeComparison(): void {
-      this.test = this.dataService.scheduleComparison('{"empty":"comparison"}');
+      this.test = this.dataService.scheduleComparison('{"account_id":"1","input_id":"1"}');
   }
 
 

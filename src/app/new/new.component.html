@@ -20,11 +20,9 @@
         <div class="col">
           <app-select-input [visible]="selectInputIsVisible" [dataService]="dataService"></app-select-input>
           <app-select-providers [visible]="selectSolutionsIsVisible" [dataService]="dataService"></app-select-providers>
-          <app-await-result [visible]="awaitResultIsVisible"></app-await-result>
+          <app-await-result [visible]="awaitResultIsVisible" [dataService]="dataService"></app-await-result>
           <!-- nav buttons -->
-          <div *ngIf="test | async as test">
-          {{test}}
-        </div>
+
           <button *ngIf="hasNext()" (click)="next()"   class="btn btn-lg btn-primary float-right">Next</button>
           <button *ngIf="hasPrevious()" (click)="previous()"   class="btn btn-lg btn-outline-secondary float-right mr-2">Back</button>
         </div>

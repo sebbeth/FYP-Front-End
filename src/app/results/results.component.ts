@@ -37,7 +37,7 @@ export class ResultsComponent implements OnInit {
     this.resultId = Number(this.router.url.replace('/results/',''));
     this.result$ = this.dataService.getResultWithId(this.resultId);
     this.result$.subscribe(result => this.result = result);
-    
+
 
   }
 

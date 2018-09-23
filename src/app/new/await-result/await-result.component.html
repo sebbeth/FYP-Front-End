@@ -8,6 +8,8 @@
   <br>
   <a onClick="window.location.reload()" class="btn btn-lg btn-outline-secondary mr-2">Do another comparison</a>
   <button class="btn btn-lg btn-primary" disabled>Calculating...</button>
-
+  <div *ngIf="test | async as test">
+  {{test.status}}
+</div>
 </div>
 </div>
