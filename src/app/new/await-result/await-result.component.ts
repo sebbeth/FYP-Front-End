@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { DataService } from '../../data.service';
 import { ResultObject } from '../../data-structures/ResultObject';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-await-result',

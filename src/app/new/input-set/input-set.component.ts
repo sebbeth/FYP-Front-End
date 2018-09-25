@@ -17,11 +17,11 @@ export class InputSetComponent implements OnInit {
     this.title = JSON.stringify(this.inputSet);
   }
 
-  private edit(): void {
+  public edit(): void {
 
   }
 
-  private use(): void {
+  public use(): void {
     if (this.checked) {
       this.checked = false;
     } else {

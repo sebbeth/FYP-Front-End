@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
+
 import { SessionService } from './session.service';
 
 import {Observable} from "rxjs/Observable";
@@ -66,6 +67,20 @@ export class DataService {
     }
   }
 
+  private getHttpHeaders(): Object {
+
+    //TODO complete this with session
+    let username: string = 'me@sebbrown.net';
+       let password: string = 'pwd';
+    const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'text/plain',
+    'authorization': 'basic ' + btoa(username + ":" + password)
+  })
+};
+return httpOptions;
+  }
+
 
 
 
@@ -74,7 +89,7 @@ export class DataService {
 
   public getExample(): Object {
     return this.http
-        .get("http://localhost/FYP-API/api.php/upload/")
+        .get("http://localhost/FYP-API/api.php/upload/",this.getHttpHeaders())
         .map(data => _.values(data))
         .do(console.log);
   }
@@ -93,7 +108,7 @@ export class DataService {
     };
 
 
-    return this.http.post<queuedTask>(this.getAPIUrl() + '/comparison/', input)
+    return this.http.post<queuedTask>(this.getAPIUrl() + '/comparison/', input,this.getHttpHeaders())
     .map(data => data.id)
     .do(console.log);
   }
@@ -101,7 +116,7 @@ export class DataService {
 
   public storeNewInputDataSet(accountId, data): void {
     this.http.post(this.getAPIUrl() + "/upload/",
-    '{"account":"1","data":'+data+'}')
+    '{"account":"1","data":'+data+'}',this.getHttpHeaders())
     .subscribe(
         (val) => {
             console.log("POST call successful value returned in body",
@@ -119,26 +134,26 @@ export class DataService {
   public getResultWithId(id): Observable<ResultObject> {
 
     return this.http
-          .get<ResultObject>(this.getAPIUrl() + "/comparison/" + id);
+          .get<ResultObject>(this.getAPIUrl() + "/comparison/" + id,this.getHttpHeaders());
   }
 
 
   public getAllResults(): Observable<ResultObject[]> {
     return this.http
-        .get<ResultObject[]>(this.getAPIUrl() + "/comparison/")
+        .get<ResultObject[]>(this.getAPIUrl() + "/comparison/",this.getHttpHeaders())
         .map(data => _.values(data));
   }
 
   public getAllInputSets(): Observable<InputSet[]> {
     return this.http
-        .get<InputSet[]> (this.getAPIUrl() + "/upload/")
+        .get<InputSet[]> (this.getAPIUrl() + "/upload/",this.getHttpHeaders())
         .map(data => _.values(data))
         .do(console.log);
   }
 
   public getAllProviders(): Observable<Object[]> {
     return this.http
-        .get(this.getAPIUrl() + "/provider/")
+        .get(this.getAPIUrl() + "/provider/",this.getHttpHeaders())
         .map(data => _.values(data))
         .do(console.log);
   }

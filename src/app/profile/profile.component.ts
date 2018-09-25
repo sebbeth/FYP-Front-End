@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from '../data-structures/account';
 import { SessionService } from '../session.service';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +11,10 @@ import { SessionService } from '../session.service';
 export class ProfileComponent implements OnInit {
 
   account: Account;
-  constructor(private sessionService: SessionService) { }
+  test: Object;
+  busy: boolean = false;
+  
+  constructor(private sessionService: SessionService, private dataService: DataService) { }
 
   ngOnInit() {
     this.account = this.sessionService.getAccount();
