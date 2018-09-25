@@ -10,6 +10,7 @@ import { catchError, retry } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { InputSet } from './data-structures/InputSet';
 import { ResultObject } from './data-structures/ResultObject';
+import { Account } from './data-structures/account';
 
   const localApiUrl = 'http://localhost/FYP-API/api.php';
   const hostedApiUrl = 'https://something.com/api.php';
@@ -156,6 +157,11 @@ return httpOptions;
         .get(this.getAPIUrl() + "/provider/",this.getHttpHeaders())
         .map(data => _.values(data))
         .do(console.log);
+  }
+  public getAccount(email: string, password: string): Observable<Account> {
+    return this.http
+        .get<Account>(this.getAPIUrl() + "/account/",this.getHttpHeaders())
+        .map(data => _.values(data));
   }
 
 }
