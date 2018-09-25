@@ -8,7 +8,7 @@ import { DataService } from '../../data.service';
 })
 export class SelectProvidersComponent implements OnInit {
 
-  @Input() visible: boolean;
+  visible: boolean;
   @Input() dataService: DataService;
   providers: Object;
   customSolutions: Object;
@@ -22,6 +22,16 @@ export class SelectProvidersComponent implements OnInit {
 
   toggleSolutionSelected(solution: number): void {
 
+  }
+
+
+  // Component setup and teardown functions
+  public show(): void {
+    this.visible = true;
+  }
+
+  public hide(): void {
+    this.visible = false;
   }
 
 }

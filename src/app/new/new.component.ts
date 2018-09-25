@@ -1,8 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { InputSet } from '../data-structures/InputSet';
+import { Comparison } from '../data-structures/comparison';
+
 import {Observable} from "rxjs/Observable";
+import { SessionService } from '../session.service';
+
+import { AwaitResultComponent }  from './await-result/await-result.component';
+import { SelectInputComponent }  from './select-input/select-input.component';
+import { SelectProvidersComponent }  from './select-providers/select-providers.component';
+
 
 @Component({
   selector: 'app-new',
@@ -12,31 +20,46 @@ import {Observable} from "rxjs/Observable";
 export class NewComponent implements OnInit {
 
 
-    textFieldContent = '{"example":"input"}';
-    stage: number;
-    busy: boolean = false;
-    inputSets: Object;
-    showSelectInput: boolean = false;
-    newInputIsVisible: boolean = false;
-    selectInputIsVisible: boolean = false;
-    selectSolutionsIsVisible: boolean = false;
-    awaitResultIsVisible: boolean = false;
-    breadcrumbCss: string[];
+  textFieldContent = '{"example":"input"}';
+  stage: number;
+  busy: boolean = false;
+  inputSets: Object;
+  showSelectInput: boolean = false;
+  newInputIsVisible: boolean = false;
+  selectInputIsVisible: boolean = false;
+  selectSolutionsIsVisible: boolean = false;
+  awaitResultIsVisible: boolean = false;
+  breadcrumbCss: string[];
+  comparison: Comparison;
+  test: Object;
+  @ViewChild(SelectInputComponent) selectInputComponent;
+  @ViewChild(SelectProvidersComponent) selectProvidersComponent;
+  @ViewChild(AwaitResultComponent) awaitResultComponent;
 
-    test: Object;
 
   constructor(
     public dataService: DataService,
-    private router: Router) { }
+    private router: Router,
+    private sessionService: SessionService) { }
 
-  ngOnInit() {
-    this.stage = 0;
-    this.selectInputIsVisible = true;
-    this.refreshStage();
-  }
+    ngOnInit() {
+      this.stage = 0;
+      this.selectInputIsVisible = true;
+      this.refreshStage();
 
-  // TODO remove this
-   uploadDataSet(): void {
+
+      this.comparison = new Comparison();
+    //  this.comparison.account = this.sessionService.getAccountId();
+
+      console.log(this.comparison);
+    }
+
+    ngAfterViewInit() {
+      this.refreshStage();
+   }
+
+    // TODO remove this
+    uploadDataSet(): void {
     if (this.textFieldContent === '') {
       return null;
     }
@@ -45,25 +68,25 @@ export class NewComponent implements OnInit {
   }
 
 
- /* NAV controls */
-   next(): void {
+  /* NAV controls */
+  next(): void {
     this.stage++;
     this.refreshStage();
   }
 
-   hasNext(): boolean {
+  hasNext(): boolean {
     if (this.stage < 2) {
       return true;
     }
     return false;
   }
 
-   previous(): void {
+  previous(): void {
     this.stage--;
     this.refreshStage();
   }
 
-   hasPrevious(): boolean {
+  hasPrevious(): boolean {
     if ( this.stage == 1 ) {
       return true;
     }
@@ -74,27 +97,30 @@ export class NewComponent implements OnInit {
   This function updates the variables used to define which page in the wizard is being displayed.
   The breadcrumb's state is also set here.
   */
-   refreshStage(): void {
+  refreshStage(): void {
     switch(this.stage) {
       case 0: {
-        this.selectInputIsVisible = true;
-        this.selectSolutionsIsVisible = false;
-        this.awaitResultIsVisible = false;
+
+        this.selectInputComponent.show();
+        this.selectProvidersComponent.hide();
+        this.awaitResultComponent.hide();
         this.breadcrumbCss = ['blue-crumb','light-blue-crumb','light-blue-crumb'];
 
         break;
       }
       case 1: {
-        this.selectInputIsVisible = false;
-        this.selectSolutionsIsVisible = true;
-        this.awaitResultIsVisible = false;
+
+        this.selectInputComponent.hide();
+        this.selectProvidersComponent.show();
+        this.awaitResultComponent.hide();
         this.breadcrumbCss = ['light-blue-crumb','blue-crumb','light-blue-crumb'];
         break;
       }
       case 2: {
-        this.selectInputIsVisible = false;
-        this.selectSolutionsIsVisible = false;
-        this.awaitResultIsVisible = true;
+
+        this.selectInputComponent.hide();
+        this.selectProvidersComponent.hide();
+        this.awaitResultComponent.show();
         this.breadcrumbCss = ['light-blue-crumb','light-blue-crumb','blue-crumb'];
         break;
       }
@@ -107,7 +133,7 @@ export class NewComponent implements OnInit {
 
 
   executeComparison(): void {
-      this.test = this.dataService.scheduleComparison('{"account_id":"1","input_id":"1"}');
+    this.test = this.dataService.scheduleComparison('{"account_id":"1","input_id":"1"}');
   }
 
 

@@ -9,7 +9,7 @@ import { DataService } from '../../data.service';
 })
 export class SelectInputComponent implements OnInit {
 
-  @Input() visible: boolean;
+  visible: boolean;
   addNewInput: boolean = false;
   @Input() dataService: DataService;
   inputSets: Object;
@@ -34,5 +34,15 @@ export class SelectInputComponent implements OnInit {
     this.dataService.storeNewInputDataSet(1,this.textFieldContent);
     this.setMode(0);
   }
+
+  // Component setup and teardown functions
+  public show(): void {
+    this.visible = true;
+  }
+
+  public hide(): void {
+    this.visible = false;
+  }
+
 
 }

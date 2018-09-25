@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class AwaitResultComponent implements OnInit {
 
-  @Input() visible: boolean;
+  visible: boolean;
   @Input() dataService: DataService;
   test: Observable<ResultObject>;
   result: ResultObject;
@@ -23,6 +23,15 @@ export class AwaitResultComponent implements OnInit {
 
     this.test.subscribe(result => this.result = result);
 
+  }
+
+  // Component setup and teardown functions
+  public show(): void {
+    this.visible = true;
+  }
+
+  public hide(): void {
+    this.visible = false;
   }
 
 

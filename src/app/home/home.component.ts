@@ -19,13 +19,12 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class HomeComponent implements OnInit {
 
   results: Observable<ResultObject[]>;
-  test: string;
 
   constructor(private dataService: DataService, private sessionService: SessionService) { }
 
   ngOnInit() {
     this.results = this.dataService.getAllResults();
-    this.test = this.dataService.getAccount('me@sebbrown.net','pwd').subscribe(output => console.log(output));
+    this.dataService.getAccount('me@sebbrown.net','pwd').subscribe(output => console.log(output));
   }
 
   /*
