@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { InputSet } from '../../data-structures/InputSet';
 import { DataService } from '../../data.service';
+import { ComparisonService } from '../comparison.service';
 
 @Component({
   selector: 'app-select-input',
@@ -12,15 +13,33 @@ export class SelectInputComponent implements OnInit {
   visible: boolean;
   addNewInput: boolean = false;
   @Input() dataService: DataService;
+  @Input() comparisonService: ComparisonService;
   inputSets: Object;
+  selectedInputSets: number[];
 
   textFieldContent = '{"example":"input"}';
 
   constructor() { }
 
   ngOnInit() {
-    this.inputSets = this.dataService.getAllInputSets();
+    this.selectedInputSets = this.comparisonService.getSelectedInputSets();
+    this.dataService.getAllInputSets()
+    .subscribe(
+      result => { this.inputSets = result}
+    //  result => { console.log()}
+    );
+    this.comparisonService.setSelectedInputSets([32,34]);
+
+    console.log(this.comparisonService.getComparison());
+/*
+    this.inputSets.forEach(function(set: InputSet) {
+      console.log('loop' + set.id);
+      let inArray = this.selectedInputSets.indexOf(set.id);
+      console.log(inArray);
+    });*/
   }
+
+
 
   setMode(mode: number) {
     if (mode == 0) {

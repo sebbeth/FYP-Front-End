@@ -18,12 +18,12 @@
   </div>
       <div class="row mt-5">
         <div class="col">
-          <app-select-input [dataService]="dataService"></app-select-input>
-          <app-select-providers [dataService]="dataService"></app-select-providers>
-          <app-await-result [dataService]="dataService"></app-await-result>
+          <app-select-input [dataService]="dataService" [comparisonService]="comparisonService"></app-select-input>
+          <app-select-providers [dataService]="dataService" [comparisonService]="comparisonService"></app-select-providers>
+          <app-await-result [dataService]="dataService" [comparisonService]="comparisonService"></app-await-result>
           <!-- nav buttons -->
 
-          <button *ngIf="hasNext()" (click)="next()"   class="btn btn-lg btn-primary float-right">Next</button>
+          <button *ngIf="hasNext()" (click)="next()" class="btn btn-lg btn-primary float-right">Next</button>
           <button *ngIf="hasPrevious()" (click)="previous()"   class="btn btn-lg btn-outline-secondary float-right mr-2">Back</button>
         </div>
       </div>

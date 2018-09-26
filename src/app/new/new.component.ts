@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { InputSet } from '../data-structures/InputSet';
 import { Comparison } from '../data-structures/comparison';
+import { ComparisonService } from './comparison.service';
 
 import {Observable} from "rxjs/Observable";
 import { SessionService } from '../session.service';
@@ -24,13 +25,8 @@ export class NewComponent implements OnInit {
   stage: number;
   busy: boolean = false;
   inputSets: Object;
-  showSelectInput: boolean = false;
-  newInputIsVisible: boolean = false;
-  selectInputIsVisible: boolean = false;
-  selectSolutionsIsVisible: boolean = false;
-  awaitResultIsVisible: boolean = false;
-  breadcrumbCss: string[];
-  comparison: Comparison;
+  breadcrumbCss: string[] = ['blue-crumb','light-blue-crumb','light-blue-crumb'];
+
   test: Object;
   @ViewChild(SelectInputComponent) selectInputComponent;
   @ViewChild(SelectProvidersComponent) selectProvidersComponent;
@@ -40,21 +36,19 @@ export class NewComponent implements OnInit {
   constructor(
     public dataService: DataService,
     private router: Router,
-    private sessionService: SessionService) { }
+    private sessionService: SessionService,
+    private comparisonService: ComparisonService) { }
 
     ngOnInit() {
       this.stage = 0;
-      this.selectInputIsVisible = true;
-      this.refreshStage();
+      this.comparisonService = new ComparisonService();
+      console.log(this.comparisonService.setAccount(1)); // TODO this is hardcoded
+      console.log(this.comparisonService.getComparison());
 
-
-      this.comparison = new Comparison();
-    //  this.comparison.account = this.sessionService.getAccountId();
-
-      console.log(this.comparison);
     }
 
-    ngAfterViewInit() {
+    ngAfterContentInit() {
+
       this.refreshStage();
    }
 
@@ -129,6 +123,8 @@ export class NewComponent implements OnInit {
         break;
       }
     }
+    console.log(this.comparisonService.getComparison());
+
   }
 
 

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { DataService } from '../../data.service';
+import { ComparisonService } from '../comparison.service';
 
 @Component({
   selector: 'app-select-providers',
@@ -10,6 +11,7 @@ export class SelectProvidersComponent implements OnInit {
 
   visible: boolean;
   @Input() dataService: DataService;
+  @Input() comparisonService: ComparisonService;
   providers: Object;
   customSolutions: Object;
   selectedSolutions: number[];
@@ -17,6 +19,10 @@ export class SelectProvidersComponent implements OnInit {
 
   ngOnInit() {
     this.providers = this.dataService.getAllProviders();
+
+    this.comparisonService.setSelectedProviders([1,2]);
+    this.comparisonService.setSelectedSolutions([3,5]);
+
   }
 
 
