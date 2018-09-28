@@ -30,7 +30,7 @@ export class AwaitResultComponent implements OnInit {
 
     console.log(this.comparisonService.getComparison());
 
-    this.dataService.scheduleComparison('{"account_id":"1","input_id":"1"}')
+    this.dataService.scheduleComparison(this.comparisonService.getComparison())
     .subscribe( (id: Object) => this.test = this.dataService.getResultWithId(id));
 
   //  this.test.subscribe(result => this.result = result);

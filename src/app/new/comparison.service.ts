@@ -21,12 +21,13 @@ export class ComparisonService {
     return this.comparison;
   }
 
-  public setSelectedInputSets(selected: number[]): void {
-   this.comparison.inputSets = selected;
+
+  public setSelectedInputs(selected: number[]): void {
+   this.comparison.inputs = selected;
   }
 
-  public getSelectedInputSets(): number[] {
-    return this.comparison.inputSets;
+  public getSelectedInputs(): number[] {
+    return this.comparison.inputs;
   }
 
   public setSelectedProviders(selected: number[]): void {

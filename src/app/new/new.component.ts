@@ -128,10 +128,6 @@ export class NewComponent implements OnInit {
   }
 
 
-  executeComparison(): void {
-    this.test = this.dataService.scheduleComparison('{"account_id":"1","input_id":"1"}');
-  }
-
 
 
 

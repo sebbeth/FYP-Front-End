@@ -11,6 +11,7 @@ import { of } from 'rxjs/observable/of';
 import { InputSet } from './data-structures/InputSet';
 import { ResultObject } from './data-structures/ResultObject';
 import { Account } from './data-structures/account';
+import { Comparison } from './data-structures/comparison';
 
   const localApiUrl = 'http://localhost/FYP-API/api.php';
   const hostedApiUrl = 'https://something.com/api.php';
@@ -96,20 +97,14 @@ return httpOptions;
   }
 
 
-  public scheduleComparison(input): Observable<number> {
+  public scheduleComparison(comparison: Comparison): Observable<number> {
 
     // Parse the input data first
+//    let input: Object = comparison;
+  //  input.solutions = comparison.solutions.join();
+    //input.inputs = comparison.inputs.join();
 
-    let payload = {
-      input_id:2,
-      solutions:[1,2],
-      parameters:{
-		      foo:'bar'
-	    }
-    };
-
-
-    return this.http.post<queuedTask>(this.getAPIUrl() + '/comparison/', input,this.getHttpHeaders())
+    return this.http.post<queuedTask>(this.getAPIUrl() + '/comparison/', comparison,this.getHttpHeaders())
     .map(data => data.id)
     .do(console.log);
   }

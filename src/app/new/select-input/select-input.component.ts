@@ -22,13 +22,13 @@ export class SelectInputComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.selectedInputSets = this.comparisonService.getSelectedInputSets();
+    this.selectedInputSets = this.comparisonService.getSelectedInputs();
     this.dataService.getAllInputSets()
     .subscribe(
       result => { this.inputSets = result}
     //  result => { console.log()}
     );
-    this.comparisonService.setSelectedInputSets([32,34]);
+    this.comparisonService.setSelectedInputs([32,34]);
 
     console.log(this.comparisonService.getComparison());
 /*
