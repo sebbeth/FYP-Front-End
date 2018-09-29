@@ -5,14 +5,18 @@
     <div style="width:100%">
 
       <h1>View results</h1>
-      <br><br>
-      <ul *ngIf="result$ | async as result$ else noData">
+      <br><br>,
+   <ul *ngIf="result$ | async as result$ else noData">
+     <div *ngIf="loaded">
         <p>Date: {{result$.timestamp}}</p>
-
         <line-chart [resultData]="result"
-        [graphData]="graphData" ></line-chart>
+              [graphData]="graphData" ></line-chart>
+              loading done
 
-      </ul>
+                </div>
+</ul>
+
+
 
 
       <ng-template #noData>No Data Available</ng-template>

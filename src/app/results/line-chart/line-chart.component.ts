@@ -8,8 +8,8 @@ import { ResultObject } from '../../data-structures/ResultObject';
 })
 export class LineChartComponent {
 
-    @Input() resultData: ResultObject;
-    @Input() graphData: Array<any>;
+  @Input() resultData: ResultObject;
+  @Input() graphData: Array<any>;
   // lineChart
   public lineChartData:Array<any> = [];
   public lineChartLabels:Array<any> = [];
@@ -46,26 +46,27 @@ export class LineChartComponent {
   public lineChartType:string = 'line';
 
   ngOnInit() {
-  //  this.lineChartData = [{data: this.graphData[0], label: 'Solution A'}];
-    console.log(this.lineChartLabels);
-    let i = 0;
-      for (i = 0; i < this.graphData.length; i++) {
-        this.lineChartData.push({data: this.graphData[i], label: i});
+    //  this.lineChartData = [{data: this.graphData[0], label: 'Solution A'}];
+
+
+    console.log(this.resultData);
+    for (let i = 0; i < this.resultData.data.length; i++) {
+      this.lineChartData.push({data: this.resultData.data[i].segments, label: i});
     }
-    let j = 0;
-    this.resultData.startDate = '2018-08-26 22:51:26';
-    for (j = 0; j < this.graphData[0].length; j++) {
-        this.lineChartLabels.push(j);
+    for (let j = 0; j < this.graphData[0].length; j++) {
+      this.lineChartLabels.push(j);
     }
   }
 
   // events
   public chartClicked(e:any):void {
-    console.log(e);
-    console.log(this.resultData);
-  }
+  console.log(e);
+  this.lineChartData.push({data: 20, label: "Added"});
 
-  public chartHovered(e:any):void {
-    console.log(e);
-  }
+  //console.log(this.resultData);
+}
+
+public chartHovered(e:any):void {
+  console.log(e);
+}
 }
