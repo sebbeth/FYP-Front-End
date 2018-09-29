@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import { DataService } from '../../data.service';
 import { ComparisonService } from '../comparison.service';
 import { ResultObject } from '../../data-structures/ResultObject';
+import { Router } from "@angular/router";
+
 import { Observable } from 'rxjs';
 
 @Component({
@@ -17,7 +19,7 @@ export class AwaitResultComponent implements OnInit {
   test: Observable<ResultObject>;
   result: ResultObject;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
 
@@ -31,7 +33,11 @@ export class AwaitResultComponent implements OnInit {
     console.log(this.comparisonService.getComparison());
 
     this.dataService.scheduleComparison(this.comparisonService.getComparison())
-    .subscribe( (id: Object) => this.test = this.dataService.getResultWithId(id));
+    .subscribe( (id: Object) => {
+      this.test = this.dataService.getResultWithId(id)
+      this.router.navigate(['/results/' + id]);
+
+    });
 
   //  this.test.subscribe(result => this.result = result);
   }
