@@ -130,22 +130,27 @@ export class DataService {
     public getResultWithId(id): Observable<ResultObject> {
 
       return this.http
-      .get<ResultObject>(this.getAPIUrl() + "/comparison/" + id,this.getHttpHeaders())
-      .map(response=>{
-            response.data = JSON.parse(response.data); // Extract the result data stored as a string from the Result object and store it as JSON.
-            return response;
-        })
+      .get<ResultObject>(this.getAPIUrl() + "/comparison/" + id,this.getHttpHeaders());
     }
 
-    private process(input:any) {
-      return input;
-    }
+    /*
+    for refrence, here is how to do work on the response of GET request before returning the observable
+
+    return this.http
+    .get<ResultObject>(this.getAPIUrl() + "/comparison/" + id,this.getHttpHeaders())
+    .map(response=>{
+          response.data = JSON.parse(response.data); // Extract the result data stored as a string from the Result object and store it as JSON.
+          return response;
+      })
+
+    */
 
 
     public getAllResults(): Observable<ResultObject[]> {
       return this.http
       .get<ResultObject[]>(this.getAPIUrl() + "/comparison/",this.getHttpHeaders())
-      .map(data => _.values(data));
+      .map(data => _.values(data))
+      .do(console.log);
     }
 
     public getAllInputSets(): Observable<InputSet[]> {

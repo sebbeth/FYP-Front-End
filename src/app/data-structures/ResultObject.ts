@@ -3,7 +3,6 @@ export class ResultObject {
   timestamp: string;
   startDate: string;
   status: string;
-  data: string;
+  data: any;
   providers: number[];
-
 }

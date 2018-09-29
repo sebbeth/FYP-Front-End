@@ -3,25 +3,35 @@
 <div class="container">
   <div class="row mt-5">
     <div style="width:100%">
-
       <h1>View results</h1>
       <br><br>,
-   <ul *ngIf="result$ | async as result$ else noData">
-     <div *ngIf="loaded">
-        <p>Date: {{result$.timestamp}}</p>
-        <line-chart [resultData]="result"
-              [graphData]="graphData" ></line-chart>
-              loading done
+      <ul *ngIf="result$ | async as result$ else noData">
+        <div *ngIf="loaded">
+          <p>Date: {{result$.timestamp}}</p>
+          <line-chart [resultData]="result"></line-chart>
 
-                </div>
-</ul>
+          <!-- Insights table-->
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Provider</th>
+                <th scope="col">Solution</th>
+                <th scope="col">Total cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let solution of result$.data">
 
+                <th [style.color]="providerHelper.getColour(solution.provider)" >{{providerHelper.getName(solution.provider)}}</th>
+                <td>{{solution.title}}</td>
+                <td>{{solution.total_cost}}</td>
+              </tr>
+            </tbody>
+          </table>
 
-
-
-      <ng-template #noData>No Data Available</ng-template>
-
-
+        </div>
+      </ul>
+      <ng-template #noData>Loading...</ng-template>
     </div>
   </div>
 </div>

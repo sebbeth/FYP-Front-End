@@ -5,6 +5,7 @@ import { SessionService } from '../session.service';
 import { InputSet } from '../data-structures/InputSet';
 
 import { ResultObject } from '../data-structures/ResultObject';
+import { ProviderHelper } from '../data-structures/ProviderHelper';
 
 
 import { Observable } from 'rxjs';
@@ -32,27 +33,12 @@ export class HomeComponent implements OnInit {
   */
   generateProviderIconsForResult(result: ResultObject): string[] {
 
+    let providerHelper = new ProviderHelper();
     let output = [];
     result.providers.forEach((provider) => {
-      switch(provider) {
-        case 0: {
-          output.push('<i class="fas fa-server"></i>');
-          break;
-        }
-        case 1: {
-          output.push('<i class="fab fa-aws"></i>');
-          break;
-        }
-        case 2: {
-          output.push('Google Cloud');
-          break;
-        }
-        default: {
-          //statements;
-          break;
-        }
+      output.push(providerHelper.getName(provider));
       }
-    });
+    );
 
 
 
