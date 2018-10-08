@@ -45,7 +45,7 @@ export class LineChartComponent {
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     }*/
-  ];
+
   public lineChartLegend:boolean = true;
   public lineChartType:string = 'line';
 
@@ -54,17 +54,17 @@ export class LineChartComponent {
     const providerHelper = new ProviderHelper();
     console.log(this.resultData);
     for (let i = 0; i < this.resultData.data.length; i++) { // For each data object from the API
-      this.lineChartData.push({data: this.resultData.data[i].segments, label: providerHelper.getName(this.resultData.data[i].provider}); // Add the segments array to lineChartData
+      this.lineChartData.push({data: this.resultData.data[i].segments, label: providerHelper.getName(this.resultData.data[i].provider)}); // Add the segments array to lineChartData
 
       // Set the line colour bases on which provider the solution is a child of
       this.lineChartColors.push({
       backgroundColor: 'rgba(148,159,177,0.2)',
       borderColor: providerHelper.getColour(this.resultData.data[i].provider),
-      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBackgroundColor: providerHelper.getColour(this.resultData.data[i].provider),
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: providerHelper.getColour(this.resultData.data[i].provider),
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    })
+    });
     }
     for (let j = 0; j < this.resultData.data[0].segments.length; j++) { // Now add the X axis labels
       this.lineChartLabels.push(j);
