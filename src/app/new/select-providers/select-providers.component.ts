@@ -19,15 +19,11 @@ export class SelectProvidersComponent implements OnInit {
 
   ngOnInit() {
     this.providers = this.dataService.getAllProviders();
-
-    this.comparisonService.setSelectedProviders([1,2]);
-    this.comparisonService.setSelectedSolutions([3,5]);
-
   }
 
 
   toggleSolutionSelected(solution: number): void {
-
+    this.comparisonService.toggleSolution(+solution);
   }
 
 

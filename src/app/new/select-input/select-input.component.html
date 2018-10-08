@@ -26,7 +26,13 @@
     <br>
     <!--<div *ngIf="inputSets | async as inputSets else noData"> -->
     <div class="row" *ngFor="let input of inputSets">
-      <app-input-set [inputSet]="input"></app-input-set>
+      <div class="col">
+        <div class="alert alert-primary">
+          <span>{{input.id}}</span><span *ngIf="comparisonService.inputIsSelected(+input.id)">Checked</span>
+          <button (click)="edit()" class='btn btn-secondary ml-2'>Edit</button>
+          <button (click)="toggleInputSelected(input.id)" class='btn btn-secondary ml-2'>Use</button>
+        </div>
+      </div>
   <!--  </div> -->
     </div>
     <ng-template #noData>loading...</ng-template>

@@ -10,6 +10,9 @@ export class ComparisonService {
 
   constructor() { // Setup a new comparison, complete with an account id
     this.comparison = new Comparison();
+    this.comparison.providers = [];
+    this.comparison.inputs = [];
+    this.comparison.solutions = [];
   }
 
   public setAccount(accountId: number) {
@@ -32,6 +35,47 @@ export class ComparisonService {
 
   public setSelectedProviders(selected: number[]): void {
    this.comparison.providers = selected;
+  }
+
+
+
+  public toggleInput(input: number): void {
+
+    const index = this.comparison.inputs.indexOf(input,0);
+    if (index > -1) {
+      this.comparison.inputs.splice(index, 1);
+    } else {
+      this.comparison.inputs.push(input);
+    }
+    console.log(this.comparison.inputs);
+
+  }
+
+  public toggleSolution(solution: number): void {
+    const index = this.comparison.solutions.indexOf(solution,0);
+    if (index > -1) {
+      this.comparison.solutions.splice(index, 1);
+    } else {
+      this.comparison.solutions.push(solution);
+    }
+    console.log(this.comparison.solutions);
+  }
+
+
+
+
+  public solutionIsSelected(provider: number): boolean {
+    if (this.comparison.providers.indexOf(provider) === -1) {
+      return false;
+    }
+    return true;
+  }
+
+  public inputIsSelected(input: number): boolean {
+    if (this.comparison.inputs.indexOf(input) === -1) {
+      return false;
+    }
+    return true;
   }
 
   public getSelectedProviders(): number[] {

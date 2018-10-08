@@ -103,6 +103,7 @@ export class DataService {
     //    let input: Object = comparison;
     //  input.solutions = comparison.solutions.join();
     //input.inputs = comparison.inputs.join();
+    comparison.parameters = '{""run_time_hours":200"}';
 
     return this.http.post<queuedTask>(this.getAPIUrl() + '/comparison/', comparison,this.getHttpHeaders())
     .map(data => data.id)

@@ -20,6 +20,8 @@
         <ul class="row" *ngFor="let solution of provider.solutions">
           <li>
             <span>{{solution.title}}</span>
+
+            <span class="ml-4" *ngIf="comparisonService.solutionIsSelected(+solution.id)">Checked</span>
             <button (click)="toggleSolutionSelected(solution.id)" class='btn btn-secondary ml-2'>Use</button>
           </li>
         </ul>

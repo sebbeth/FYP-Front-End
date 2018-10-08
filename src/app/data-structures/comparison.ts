@@ -4,4 +4,5 @@ export class Comparison {
   inputs: number[];
   providers: number[];
   solutions: number[];
+  parameters: string;
 }

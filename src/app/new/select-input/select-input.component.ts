@@ -28,9 +28,7 @@ export class SelectInputComponent implements OnInit {
       result => { this.inputSets = result}
     //  result => { console.log()}
     );
-    this.comparisonService.setSelectedInputs([32,34]);
 
-    console.log(this.comparisonService.getComparison());
 /*
     this.inputSets.forEach(function(set: InputSet) {
       console.log('loop' + set.id);
@@ -39,6 +37,10 @@ export class SelectInputComponent implements OnInit {
     });*/
   }
 
+
+  toggleInputSelected(input: number): void {
+    this.comparisonService.toggleInput(+input);
+  }
 
 
   setMode(mode: number) {
