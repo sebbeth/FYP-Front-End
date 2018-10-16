@@ -64,8 +64,8 @@ export class ComparisonService {
 
 
 
-  public solutionIsSelected(provider: number): boolean {
-    if (this.comparison.providers.indexOf(provider) === -1) {
+  public solutionIsSelected(solution: number): boolean {
+    if (this.comparison.solutions.indexOf(solution) === -1) {
       return false;
     }
     return true;
