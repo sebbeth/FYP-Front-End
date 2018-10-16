@@ -113,7 +113,7 @@ export class DataService {
 
   public storeNewInputDataSet(accountId, data): void {
     this.http.post(this.getAPIUrl() + "/upload/",
-    '{"account":"1","data":'+data+'}',this.getHttpHeaders())
+    '{"account":"1","input":'+data+'}',this.getHttpHeaders())
     .subscribe(
       (val) => {
         console.log("POST call successful value returned in body",
@@ -146,6 +146,10 @@ export class DataService {
 
     */
 
+
+    public deleteInputSet(id): void {
+      this.http.delete(this.getAPIUrl() + "/upload/" + id,this.getHttpHeaders()).subscribe();
+    }
 
     public getAllResults(): Observable<ResultObject[]> {
       return this.http

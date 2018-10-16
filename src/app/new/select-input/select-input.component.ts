@@ -22,12 +22,7 @@ export class SelectInputComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.selectedInputSets = this.comparisonService.getSelectedInputs();
-    this.dataService.getAllInputSets()
-    .subscribe(
-      result => { this.inputSets = result}
-    //  result => { console.log()}
-    );
+    this.load();
 
 /*
     this.inputSets.forEach(function(set: InputSet) {
@@ -53,7 +48,21 @@ export class SelectInputComponent implements OnInit {
 
   saveNewInput(): void {
     this.dataService.storeNewInputDataSet(1,this.textFieldContent);
+    this.load();
     this.setMode(0);
+  }
+
+  public delete(input: number): void {
+    this.dataService.deleteInputSet(input);
+    this.load();
+  }
+
+  private load(): void {
+    this.selectedInputSets = this.comparisonService.getSelectedInputs();
+    this.dataService.getAllInputSets()
+    .subscribe(
+      result => { this.inputSets = result}
+    );
   }
 
   // Component setup and teardown functions

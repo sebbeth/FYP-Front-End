@@ -9,7 +9,6 @@
 
       <label for="textField">Input data, needs to be a valid JSON object, validation for this will come later</label>
     <input #textField="ngModel"  [(ngModel)]="textFieldContent" id='textField' name='textField' type="text" class="form-control">
-    <p>{{textFieldContent}}</p>
     </div>
     <button (click)="setMode(0)" class='btn btn-secondary'>Close</button>
     <button (click)="saveNewInput()" class='btn btn-success'>Save</button>
@@ -17,23 +16,22 @@
 
   </ng-template>
 
-  <ng-template #existingInput>
-    <h2>Select the input sets you're going to use</h2>
+  <ng-template #existingInput >
+    <div class="text-center">
+    <span class="display-5">Describe the workload you are going to run. This can be done by adding a new Input Set, or selecting previously saved sets below.</span>
 
     <br>
-    <button (click)="setMode(1)" class='btn btn-secondary'>Add a new input set</button>
+    <button (click)="setMode(1)" class='btn btn-lg btn-secondary my-3'>Add a new input set</button>
+  </div>
+  <br>
     <br>
-    <br>
-    <!--<div *ngIf="inputSets | async as inputSets else noData"> -->
     <div class="row" *ngFor="let input of inputSets">
-      <div class="col">
-        <div class="alert alert-primary">
-          <span>{{input.id}}</span><span *ngIf="comparisonService.inputIsSelected(+input.id)">Checked</span>
-          <button (click)="edit()" class='btn btn-secondary ml-2'>Edit</button>
-          <button (click)="toggleInputSelected(input.id)" class='btn btn-secondary ml-2'>Use</button>
+      <div class="col" >
+        <div (click)="toggleInputSelected(input.id)" class="alert d-flex justify-content-between" [ngClass]="{' alert-success' : comparisonService.inputIsSelected(+input.id), ' alert-secondary' : !comparisonService.inputIsSelected(+input.id)}"  >
+          <span>{{input.id}} {{input.data.description}}</span>
+          <button (click)="delete(+input.id)" class='btn btn-outline-danger ml-2'><i class="far fa-trash-alt"></i></button>
         </div>
       </div>
-  <!--  </div> -->
     </div>
     <ng-template #noData>loading...</ng-template>
   </ng-template>
