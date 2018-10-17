@@ -14,7 +14,7 @@ import { Account } from './data-structures/account';
 import { Comparison } from './data-structures/comparison';
 
 const localApiUrl = 'http://localhost/FYP-API/api.php';
-const hostedApiUrl = 'https://something.com/api.php';
+const hostedApiUrl = 'http://hbcapp.com/CCA/api.php';
 
 interface testFace {
   id: number;
@@ -32,7 +32,7 @@ interface queuedTask {
 export class DataService {
 
 
-  apiMode = 0;
+  apiMode = 1;
 
   testVal: string;
 
