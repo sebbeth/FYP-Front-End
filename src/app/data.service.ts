@@ -162,6 +162,13 @@ export class DataService {
       .do(console.log);
     }
 
+    public getInputSet(id: Number): Observable<InputSet> {
+      return this.http
+      .get<InputSet> (this.getAPIUrl() + "/upload/" + id,this.getHttpHeaders())
+      .map(data => _.values(data))
+      .do(console.log);
+    }
+
     public getAllInputSets(): Observable<InputSet[]> {
       return this.http
       .get<InputSet[]> (this.getAPIUrl() + "/upload/",this.getHttpHeaders())

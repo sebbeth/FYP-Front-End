@@ -34,7 +34,6 @@ export class ResultsComponent implements OnInit {
     this.result$ = this.dataService.getResultWithId(this.resultId);
     this.result$.subscribe(result => {
       this.result = result
-      console.log('test')
       this.loaded = true;
     });
   /*  this.result$.subscribe(

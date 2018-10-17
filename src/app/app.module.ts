@@ -19,7 +19,6 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { ConceptComponent } from './concept/concept.component';
 import { HomeComponent } from './home/home.component';
 import { NewComponent } from './new/new.component';
-import { InputSetComponent } from './new/input-set/input-set.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ResultsComponent } from './results/results.component';
 import { HttptestComponent } from './httptest/httptest.component';
@@ -31,6 +30,7 @@ import { EditSolutionComponent } from './edit-solution/edit-solution.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { AwaitResultComponent } from './new/await-result/await-result.component';
 import { CustomSolutionsComponent } from './custom-solutions/custom-solutions.component';
+import { WorkloadsComponent } from './workloads/workloads.component';
 
 
 @NgModule({
@@ -41,7 +41,6 @@ import { CustomSolutionsComponent } from './custom-solutions/custom-solutions.co
     ConceptComponent,
     HomeComponent,
     NewComponent,
-    InputSetComponent,
     ProfileComponent,
     ResultsComponent,
     LineChartComponent,
@@ -52,7 +51,8 @@ import { CustomSolutionsComponent } from './custom-solutions/custom-solutions.co
     EditSolutionComponent,
     SignInComponent,
     AwaitResultComponent,
-    CustomSolutionsComponent
+    CustomSolutionsComponent,
+    WorkloadsComponent
   ],
   imports: [
     BrowserModule,

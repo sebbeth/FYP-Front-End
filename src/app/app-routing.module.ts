@@ -8,6 +8,7 @@ import { ResultsComponent }      from './results/results.component';
 import {ConceptComponent } from './concept/concept.component';
 import { HttptestComponent } from './httptest/httptest.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { WorkloadsComponent } from './workloads/workloads.component';
 import { CustomSolutionsComponent} from './custom-solutions/custom-solutions.component';
 import { CanActivateGuard } from './can-activate.guard';
 
@@ -20,6 +21,7 @@ const routes: Routes = [
     ]},*/
     { path: 'new', component: NewComponent},
   { path: 'profile', component: ProfileComponent},
+  { path: 'workloads/:id', component: WorkloadsComponent},
   { path: 'results/:id', component: ResultsComponent},
   { path: 'sign-in', component: SignInComponent},
   { path: 'my-resources', component: CustomSolutionsComponent},

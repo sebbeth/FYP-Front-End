@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InputSetComponent } from './input-set.component';
+import { WorkloadsComponent } from './workloads.component';
 
-describe('InputSetComponent', () => {
-  let component: InputSetComponent;
-  let fixture: ComponentFixture<InputSetComponent>;
+describe('WorkloadsComponent', () => {
+  let component: WorkloadsComponent;
+  let fixture: ComponentFixture<WorkloadsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InputSetComponent ]
+      declarations: [ WorkloadsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InputSetComponent);
+    fixture = TestBed.createComponent(WorkloadsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

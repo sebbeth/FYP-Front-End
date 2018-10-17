@@ -1,0 +1,13 @@
+
+  workloads works!
+
+  {{id}}
+  <ul *ngIf="workload$ | async as workload$ else noData">
+    <div *ngIf="loaded">
+      {{workload.data}}
+    </div>
+  </ul>
+
+
+
+<ng-template #noData>Loading...</ng-template>
