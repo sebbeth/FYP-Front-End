@@ -14,7 +14,7 @@ import { Account } from './data-structures/account';
 import { Comparison } from './data-structures/comparison';
 
 const localApiUrl = 'http://localhost/FYP-API/api.php';
-const hostedApiUrl = 'http://hbcapp.com/CCA/api.php';
+const hostedApiUrl = 'https://sbrown.hbcapp.com/api.php';
 
 interface testFace {
   id: number;
