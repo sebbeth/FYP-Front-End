@@ -1,12 +1,14 @@
+<app-navigation></app-navigation>
 
-  workloads works!
+  <div class="container">
+  <h2 class="display-4">Workload {{id}}</h2>
 
-  {{id}}
-  <ul *ngIf="workload$ | async as workload$ else noData">
+  <div *ngIf="workload$ | async as workload$ else noData">
     <div *ngIf="loaded">
-      {{workload.data}}
+      <code>{{workload}}</code>
     </div>
-  </ul>
+  </div>
+</div>
 
 
 

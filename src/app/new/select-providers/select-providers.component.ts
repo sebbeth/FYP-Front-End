@@ -26,6 +26,12 @@ export class SelectProvidersComponent implements OnInit {
     this.comparisonService.toggleSolution(+solution);
   }
 
+  public selectAll(solutions: array): void {
+    console.log(solutions);
+    solutions.forEach((solution) => {
+      this.comparisonService.toggleSolution(+solution.id);
+      }
+  }
 
   // Component setup and teardown functions
   public show(): void {

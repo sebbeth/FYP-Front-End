@@ -61,7 +61,9 @@ export class ComparisonService {
     console.log(this.comparison.solutions);
   }
 
+  public toggleAllSolutionsForProvider(provider: number): void {
 
+  }
 
 
   public solutionIsSelected(solution: number): boolean {

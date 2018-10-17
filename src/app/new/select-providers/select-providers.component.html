@@ -2,29 +2,26 @@
 <div class="container">
   <div class="row">
   <div class="alert alert-secondary col-12" role="alert">
-    <h4 class="alert-heading">Custom</h4>
+    <h4 class="alert-heading">Custom <button (click)="selectAll(0)" class="btn btn-outline-secondary ml-2">Select All</button></h4>
     <hr>
     <ul class="row" *ngFor="let solution of customSolutions">
       <li>
         Custom
       </li>
     </ul>
-    <a  routerLink="/my-resources"  class="btn btn-primary">Add a new solution</a>
+    <a  routerLink="/my-resources"  class="btn btn-primary float-right">Add a new solution</a>
   </div>
 </div>
   <div *ngIf="providers | async as providers else noData">
     <div class="row" *ngFor="let provider of providers">
-      <div class="alert alert-success col-12" role="alert">
-        <h4 class="alert-heading">{{provider.name}}</h4>
+      <div class="alert alert-info col-12" role="alert">
+        <h4 class="alert-heading">{{provider.name}} <button (click)="selectAll(provider.solutions)" class="btn btn-outline-secondary ml-2">Select All</button></h4>
         <hr>
-        <ul class="row" *ngFor="let solution of provider.solutions">
-          <li>
-            <span>{{solution.title}}</span>
-
-            <span class="ml-4" *ngIf="comparisonService.solutionIsSelected(+solution.id)">Checked</span>
-            <button (click)="toggleSolutionSelected(solution.id)" class='btn btn-secondary ml-2'>Use</button>
-          </li>
-        </ul>
+        <div *ngFor="let solution of provider.solutions">
+          <div (click)="toggleSolutionSelected(solution.id)" class="alert d-flex justify-content-between"  [ngClass]="{' alert-success' : comparisonService.solutionIsSelected(+solution.id), ' alert-secondary' : !comparisonService.solutionIsSelected(+solution.id)}">
+            <span><i *ngIf="comparisonService.solutionIsSelected(+solution.id)" class="far fa-check-square mr-2"></i>{{solution.title}}</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>

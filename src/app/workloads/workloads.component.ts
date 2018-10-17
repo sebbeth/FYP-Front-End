@@ -15,7 +15,7 @@ export class WorkloadsComponent implements OnInit {
   id: Number;
   loaded: boolean = true;
   workload$: Observable<InputSet>;
-  workload: InputSet;
+  workload: String;
 
   constructor(private route: ActivatedRoute,private router: Router,private dataService: DataService) { }
 
@@ -23,7 +23,7 @@ export class WorkloadsComponent implements OnInit {
     this.id = Number(this.router.url.replace('/workloads/',''));
     this.workload$ = this.dataService.getInputSet(this.id);
     this.workload$.subscribe(workload => {
-      this.workload = workload
+      this.workload = JSON.stringify(workload);
       this.loaded = true;
     });
   }
