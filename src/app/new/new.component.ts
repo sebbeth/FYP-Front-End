@@ -37,7 +37,7 @@ export class NewComponent implements OnInit {
     public dataService: DataService,
     private router: Router,
     private sessionService: SessionService,
-    private comparisonService: ComparisonService) { }
+    public comparisonService: ComparisonService) { }
 
     ngOnInit() {
       this.stage = 0;
