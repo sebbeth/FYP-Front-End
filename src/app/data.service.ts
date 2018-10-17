@@ -32,15 +32,16 @@ interface queuedTask {
 export class DataService {
 
 
-  apiMode = 1;
+  apiMode = 0;
 
   testVal: string;
 
-  private
 
 
-
-  constructor(private http: HttpClient, private sessionService: SessionService) { }
+  constructor(
+     private http: HttpClient,
+     private sessionService: SessionService
+   ) { }
 
 
   public setAPIMode(mode) {
@@ -62,10 +63,13 @@ export class DataService {
   }
 
   public getAPIUrl(): string {
-    if (this.apiMode == 0) {
-      return localApiUrl;
-    } else {
+
+    let substring = "https://fyp.sebbrown.net";
+    if (location.href.indexOf(substring) !== -1) {
+      console.log('Production mode');
       return hostedApiUrl;
+    } else {
+      return localApiUrl;
     }
   }
 
