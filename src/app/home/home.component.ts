@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.results = this.dataService.getAllResults();
-    this.dataService.getAccount('me@sebbrown.net','pwd').subscribe(output => console.log(output));
+    //this.dataService.getAccount('me@sebbrown.net','pwd').subscribe(output => console.log(output));
   }
 
   /*

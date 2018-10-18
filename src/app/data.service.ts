@@ -36,12 +36,15 @@ export class DataService {
 
   testVal: string;
 
+  private username: string;
+  private password: string;
 
 
   constructor(
      private http: HttpClient,
      private sessionService: SessionService
-   ) { }
+   ) {
+ }
 
 
   public setAPIMode(mode) {
@@ -55,7 +58,6 @@ export class DataService {
       default:
       // do nothing
     }
-    console.log(this.getAPIUrl());
   }
 
   public getAPIMode(): number {
@@ -66,22 +68,24 @@ export class DataService {
 
     let substring = "https://fyp.sebbrown.net";
     if (location.href.indexOf(substring) !== -1) {
-      console.log('Production mode');
       return hostedApiUrl;
     } else {
       return localApiUrl;
     }
   }
 
-  private getHttpHeaders(): Object {
+  public storeCredentials(username: string, password: string) {
+    this.username = username;
+    this.password = password;
+  }
 
-    //TODO complete this with session
-    let username: string = 'me@sebbrown.net';
-    let password: string = 'pwd';
+  private getHttpHeaders(): Object {
+  //  console.log('DATA' + this.sessionService.getAccountId());
+
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'text/plain',
-        'authorization': 'basic ' + btoa(username + ":" + password)
+        'authorization': 'basic ' + btoa(this.username + ":" + this.password)
       })
     };
     return httpOptions;
@@ -107,7 +111,7 @@ export class DataService {
     //    let input: Object = comparison;
     //  input.solutions = comparison.solutions.join();
     //input.inputs = comparison.inputs.join();
-    comparison.parameters = '{""run_time_hours":200"}';
+    comparison.parameters = '{"run_time_hours":200}';
 
     return this.http.post<queuedTask>(this.getAPIUrl() + '/comparison/', comparison,this.getHttpHeaders())
     .map(data => data.id)

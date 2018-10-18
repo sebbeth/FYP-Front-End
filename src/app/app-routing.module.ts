@@ -14,20 +14,23 @@ import { CanActivateGuard } from './can-activate.guard';
 
 const routes: Routes = [
 
-  { path: 'start', component: LandingComponent },
   { path: '', component: HomeComponent},
-/*  { path: 'new', component: NewComponent, canActivate: [
-      CanActivateGuard
-    ]},*/
-    { path: 'new', component: NewComponent},
+  { path: 'new', component: NewComponent, canActivate: [CanActivateGuard]},
+  { path: 'profile', component: ProfileComponent, canActivate: [CanActivateGuard]},
+  { path: 'workloads/:id', component: WorkloadsComponent, canActivate: [CanActivateGuard]},
+  { path: 'results/:id', component: ResultsComponent, canActivate: [CanActivateGuard]},
+  { path: 'sign-in', component: SignInComponent},
+  { path: 'my-resources', component: CustomSolutionsComponent, canActivate: [CanActivateGuard]}
+
+  /*
+  { path: '', component: HomeComponent},
+  { path: 'new', component: NewComponent},
   { path: 'profile', component: ProfileComponent},
   { path: 'workloads/:id', component: WorkloadsComponent},
   { path: 'results/:id', component: ResultsComponent},
   { path: 'sign-in', component: SignInComponent},
-  { path: 'my-resources', component: CustomSolutionsComponent},
-  { path: 't', component: HttptestComponent}
-
-
+  { path: 'my-resources', component: CustomSolutionsComponent}
+  */
 ];
 
 @NgModule({
