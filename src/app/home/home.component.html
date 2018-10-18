@@ -9,11 +9,19 @@
 
     <p>Built by Sebastian Brown.</p>
 
-    <p>Create a new comparison to get started.</p>
+    <div *ngIf="isSignedIn()">
+      <p>Create a new comparison to get started.</p>
+      <a  routerLink="/new"  class='btn btn-primary btn-lg mt-5 mb-5'>New Comparison <i class="pl-1 far fa-plus-square"></i></a>
 
-<a routerLink="/new"  class='btn btn-primary btn-lg mt-5 mb-5'>New Comparison <i class="pl-1 far fa-plus-square"></i></a>
+    </div>
+    <div *ngIf="!isSignedIn()">
+      <p>Sign In to get started.</p>
+      <a  routerLink="/sign-in"  class='btn btn-primary btn-lg mt-5 mb-5'>Sign In</a>
+    </div>
+
 <br>
 
+  <div *ngIf="isSignedIn()">
   <hr>
     <h2 class="display-4 text-center m-5">Results</h2>
     <span></span>
@@ -43,7 +51,7 @@
 <div class="col-2">
 <ng-template #noData>loading...</ng-template>
 </div>
-
+</div>
 
 <script>
 </script>

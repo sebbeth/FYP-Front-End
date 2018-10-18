@@ -40,9 +40,11 @@ export class HomeComponent implements OnInit {
       }
     );
 
-
-
     return output;
+  }
+
+  isSignedIn(): boolean {
+    return this.sessionService.isSignedIn();
   }
 
 }

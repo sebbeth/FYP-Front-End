@@ -11,27 +11,25 @@ import { Router } from "@angular/router";
 export class SignInComponent implements OnInit {
 
   email: String;
-  password: String;
+  password: String = 'password';
   busy = false;
   errorMessage: String;
 
-  constructor(private sessionService: SessionService, private router: Router) { }
+  constructor(private sessionService: SessionService, private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
   }
 
- onSubmit() {
-       console.log(this.email + " " + this.password);
-      this.busy = true;
-      let success = this.sessionService.signIn(this.email,this.password);
+  onSubmit() {
+    this.busy = true;
+    let success = this.sessionService.signIn(this.email,this.password);
 
-      if (success) {
-         this.router.navigate(['']);
-      } else {
-        console.log("F");
-        this.errorMessage = "Sign in failed :(";
-      }
-      this.busy = false;
+    if (success) {
+      this.router.navigate(['']);
+    } else {
+      this.errorMessage = "Sign in failed :(";
+    }
+    this.busy = false;
+
   }
-
 }

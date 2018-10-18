@@ -15,7 +15,7 @@ export class NavigationComponent implements OnInit {
   constructor(private dataService: DataService, private sessionService: SessionService,private router: Router) { }
 
   ngOnInit() {
-    this.sessionService.signIn("me@sebbrown.net","pwd"); // TODO remove this, this is only for development
+    //this.sessionService.signIn("me@sebbrown.net","pwd"); // TODO remove this, this is only for development
     this.apiMode = this.getAPIMode();
   }
 
@@ -38,7 +38,7 @@ export class NavigationComponent implements OnInit {
 
   signOut() {
     this.sessionService.signOut();
-    this.router.navigate(['sign-in']);
+    this.router.navigate(['']);
   }
 
 }

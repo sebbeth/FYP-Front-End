@@ -36,9 +36,6 @@ export class DataService {
 
   testVal: string;
 
-  private username: string;
-  private password: string;
-
 
   constructor(
      private http: HttpClient,
@@ -74,18 +71,19 @@ export class DataService {
     }
   }
 
-  public storeCredentials(username: string, password: string) {
-    this.username = username;
-    this.password = password;
-  }
+
 
   private getHttpHeaders(): Object {
   //  console.log('DATA' + this.sessionService.getAccountId());
+    let account = this.sessionService.getAccount();
+    if (account == null ) {
+      return ''
+    }
 
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'text/plain',
-        'authorization': 'basic ' + btoa(this.username + ":" + this.password)
+        'authorization': 'basic ' + btoa(account.email + ":" + account.password)
       })
     };
     return httpOptions;

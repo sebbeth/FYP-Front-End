@@ -8,6 +8,7 @@ import { FormsModule }   from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
 //import { Headers, Response, Http, RequestOptions, URLSearchParams } from "@angular/http"
 import { ChartsModule } from 'ng2-charts';
+import { CookieService } from 'ngx-cookie-service';
 
 
 import { AppComponent } from './app.component';
@@ -63,7 +64,7 @@ import { WorkloadsComponent } from './workloads/workloads.component';
     NgbModule.forRoot(),
 
   ],
-  providers: [DataService,SessionService],
+  providers: [DataService,SessionService,CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
