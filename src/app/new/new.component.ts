@@ -25,7 +25,6 @@ export class NewComponent implements OnInit {
   stage: number;
   busy: boolean = false;
   inputSets: Object;
-  breadcrumbCss: string[] = ['blue-crumb','light-blue-crumb','light-blue-crumb'];
 
   test: Object;
   @ViewChild(SelectInputComponent) selectInputComponent;
@@ -68,23 +67,10 @@ export class NewComponent implements OnInit {
     this.refreshStage();
   }
 
-  hasNext(): boolean {
-    if (this.stage < 2) {
-      return true;
-    }
-    return false;
-  }
 
   previous(): void {
     this.stage--;
     this.refreshStage();
-  }
-
-  hasPrevious(): boolean {
-    if ( this.stage == 1 ) {
-      return true;
-    }
-    return false;
   }
 
   /*
@@ -98,8 +84,6 @@ export class NewComponent implements OnInit {
         this.selectInputComponent.show();
         this.selectProvidersComponent.hide();
         this.awaitResultComponent.hide();
-        this.breadcrumbCss = ['blue-crumb','light-blue-crumb','light-blue-crumb'];
-
         break;
       }
       case 1: {
@@ -107,7 +91,6 @@ export class NewComponent implements OnInit {
         this.selectInputComponent.hide();
         this.selectProvidersComponent.show();
         this.awaitResultComponent.hide();
-        this.breadcrumbCss = ['light-blue-crumb','blue-crumb','light-blue-crumb'];
         break;
       }
       case 2: {
@@ -115,7 +98,6 @@ export class NewComponent implements OnInit {
         this.selectInputComponent.hide();
         this.selectProvidersComponent.hide();
         this.awaitResultComponent.show();
-        this.breadcrumbCss = ['light-blue-crumb','light-blue-crumb','blue-crumb'];
         break;
       }
       default: {

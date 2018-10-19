@@ -69,6 +69,7 @@ export class SessionService {
       }
 
     return false;
+  }
 
   public signOut() {
     // Destroy the account object

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DataService } from '../../data.service';
 import { ComparisonService } from '../comparison.service';
 
@@ -12,6 +12,9 @@ export class SelectProvidersComponent implements OnInit {
   visible: boolean;
   @Input() dataService: DataService;
   @Input() comparisonService: ComparisonService;
+  @Output() nextEvent = new EventEmitter();
+  @Output() previousEvent = new EventEmitter();
+
   providers: Object;
   customSolutions: Object;
   selectedSolutions: number[];
@@ -40,6 +43,24 @@ export class SelectProvidersComponent implements OnInit {
 
   public hide(): void {
     this.visible = false;
+  }
+
+  public hasNext(): boolean {
+    return true;
+  }
+
+
+  public next(): void {
+    this.nextEvent.next();
+  }
+
+  public hasPrevious(): boolean {
+    return true;
+  }
+
+
+  public previous(): void {
+    this.previousEvent.next();
   }
 
 }

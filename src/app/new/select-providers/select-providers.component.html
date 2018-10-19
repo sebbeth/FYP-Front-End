@@ -1,4 +1,9 @@
 <div *ngIf="visible">
+  <ol class="breadcrumb justify-content-md-center bg-white font-weight-bold mb-5">
+    <li class="breadcrumb-item">Requirements</li>
+    <li class="breadcrumb-item active">Platforms</li>
+    <li class="breadcrumb-item">Calculate</li>
+  </ol>
 <div class="container">
   <div class="row">
   <div class="alert alert-secondary col-12" role="alert">
@@ -25,6 +30,10 @@
       </div>
     </div>
   </div>
+
+  <!-- nav buttons -->
+  <button *ngIf="hasNext()" (click)="next()" class="btn btn-lg btn-primary float-right">Next</button>
+  <button *ngIf="hasPrevious()" (click)="previous()" class="btn btn-lg btn-outline-secondary float-right mr-2">Previous</button>
 
   <ng-template #noData>loading...</ng-template>
 

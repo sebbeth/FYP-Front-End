@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { InputSet } from '../../data-structures/InputSet';
 import { DataService } from '../../data.service';
 import { ComparisonService } from '../comparison.service';
+
 
 @Component({
   selector: 'app-select-input',
@@ -14,6 +15,8 @@ export class SelectInputComponent implements OnInit {
   addNewInput: boolean = false;
   @Input() dataService: DataService;
   @Input() comparisonService: ComparisonService;
+  @Output() nextEvent = new EventEmitter();
+
   inputSets: Object;
   selectedInputSets: number[];
 
@@ -72,6 +75,18 @@ export class SelectInputComponent implements OnInit {
 
   public hide(): void {
     this.visible = false;
+  }
+
+  public hasNext(): boolean {
+    if (this.comparisonService.getSelectedInputs().length > 0) {
+      return true;
+    }
+    return false;
+  }
+
+
+  public next(): void {
+    this.nextEvent.next();
   }
 
 

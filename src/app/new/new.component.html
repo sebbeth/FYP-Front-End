@@ -7,30 +7,13 @@
 <div class="container">
   <h1 class="display-4 mb-2">New Comparison</h1>
 
-  <div class="row">
-  </div>
-  <div class="row justify-content-md-center">
 
-    <div class="col-7">
-
-      <!-- Breadcrumb -->
-      <ul class="custom-breadcrumb">
-        <li [ngClass]="breadcrumbCss[0]">Requirements</li>
-        <li [ngClass]="breadcrumbCss[1]">Platforms</li>
-        <li [ngClass]="breadcrumbCss[2]">Calculate</li>
-      </ul>
-    </div>
-  </div>
       <div class="row mt-5">
         <div class="col">
-          <app-select-input [dataService]="dataService" [comparisonService]="comparisonService"></app-select-input>
-          <app-select-providers [dataService]="dataService" [comparisonService]="comparisonService"></app-select-providers>
-          <app-await-result [dataService]="dataService" [comparisonService]="comparisonService"></app-await-result>
-          <!-- nav buttons -->
-
-          <button *ngIf="hasNext()" (click)="next()" class="btn btn-lg btn-primary float-right">Next</button>
-          <button *ngIf="hasPrevious()" (click)="previous()"   class="btn btn-lg btn-outline-secondary float-right mr-2">Back</button>
-        </div>
+          <app-select-input (nextEvent)="next()" [dataService]="dataService" [comparisonService]="comparisonService"></app-select-input>
+          <app-select-providers (previousEvent)="previous()" (nextEvent)="next()" [dataService]="dataService" [comparisonService]="comparisonService"></app-select-providers>
+          <app-await-result  [dataService]="dataService" [comparisonService]="comparisonService"></app-await-result>
+          </div>
       </div>
     </div>
 
