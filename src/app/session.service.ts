@@ -52,12 +52,16 @@ export class SessionService {
     // Hardcoded valid emails
     switch(email) {
       case 'me@sebbrown.net':
-      account.id = 1;
+      account.id = 6;
         break;
       case 'tester@email.com':
+        account.id = 7;
+        break;
+      case 'bradley@email.com':
         account.id = 8;
         break;
       }
+
 
       if (account.id != null) {
         account.email = email;
