@@ -39,7 +39,6 @@ export class SessionService {
     account.id = +this.cookieService.get('id');
     account.email = this.cookieService.get('username');
     account.password = this.cookieService.get('password');
-
     return account;
   }
 

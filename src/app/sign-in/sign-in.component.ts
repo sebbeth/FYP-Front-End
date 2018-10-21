@@ -11,7 +11,7 @@ import { Router } from "@angular/router";
 export class SignInComponent implements OnInit {
 
   email: String;
-  password: String;
+  password: String = 'SENG4800B';
   busy = false;
   errorMessage: String;
 
