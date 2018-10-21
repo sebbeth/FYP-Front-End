@@ -117,19 +117,17 @@ export class DataService {
   }
 
 
-  public storeNewInputDataSet(accountId, data): void {
+  public storeNewInputDataSet(data): void {
+
     this.http.post(this.getAPIUrl() + "/upload/",
-    '{"account":"1","input":'+data+'}',this.getHttpHeaders())
+    '{"account":' + this.sessionService.getAccountId() + ',"input":'+data+'}',this.getHttpHeaders())
     .subscribe(
       (val) => {
-        console.log("POST call successful value returned in body",
+        console.log("SAVE SUCCESSFUL",
         val);
       },
       response => {
-        console.log("POST call in error", response);
-      },
-      () => {
-        console.log("The POST observable is now completed.");
+        console.log("ERROR SAVING", response);
       });
     }
 

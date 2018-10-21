@@ -41,7 +41,7 @@ export class NewComponent implements OnInit {
     ngOnInit() {
       this.stage = 0;
       this.comparisonService = new ComparisonService();
-      console.log(this.comparisonService.setAccount(1)); // TODO this is hardcoded
+      console.log(this.comparisonService.setAccount(this.sessionService.getAccountId())); // TODO this is hardcoded
       console.log(this.comparisonService.getComparison());
 
     }
@@ -57,7 +57,7 @@ export class NewComponent implements OnInit {
       return null;
     }
     let data = JSON.parse(this.textFieldContent);
-    this.dataService.storeNewInputDataSet(1,data);
+    this.dataService.storeNewInputDataSet(data);
   }
 
 

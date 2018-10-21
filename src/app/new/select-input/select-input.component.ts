@@ -50,7 +50,7 @@ export class SelectInputComponent implements OnInit {
   }
 
   saveNewInput(): void {
-    this.dataService.storeNewInputDataSet(1,this.textFieldContent);
+    this.dataService.storeNewInputDataSet(this.textFieldContent);
     this.load();
     this.setMode(0);
   }
