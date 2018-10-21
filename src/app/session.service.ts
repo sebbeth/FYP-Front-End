@@ -60,6 +60,9 @@ export class SessionService {
       case 'bradley@email.com':
         account.id = 8;
         break;
+        case 'autotest':
+          account.id = 10;
+          break;
       }
 
 
