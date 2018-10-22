@@ -32,8 +32,8 @@
   </div>
 
   <!-- nav buttons -->
-  <button *ngIf="hasNext()" (click)="next()" class="btn btn-lg btn-primary float-right">Next</button>
-  <button *ngIf="hasPrevious()" (click)="previous()" class="btn btn-lg btn-outline-secondary float-right mr-2">Previous</button>
+  <button [disabled]="!hasNext()" (click)="next()" class="btn btn-lg btn-primary float-right">Next</button>
+  <button  (click)="previous()" class="btn btn-lg btn-outline-secondary float-right mr-2">Previous</button>
 
   <ng-template #noData>loading...</ng-template>
 

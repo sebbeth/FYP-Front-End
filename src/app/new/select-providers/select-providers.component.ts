@@ -46,7 +46,10 @@ export class SelectProvidersComponent implements OnInit {
   }
 
   public hasNext(): boolean {
-    return true;
+    if (this.comparisonService.getSelectedSolutions().length > 0) {
+      return true;
+    }
+  return false;
   }
 
 

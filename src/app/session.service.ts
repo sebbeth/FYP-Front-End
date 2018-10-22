@@ -46,6 +46,10 @@ export class SessionService {
     if ((email == null) || (password == null) ){
       return false;
     }
+
+    if (password != 'SENG4800B') {
+      return false;
+    }
     let account = new Account();
 
     // Hardcoded valid emails

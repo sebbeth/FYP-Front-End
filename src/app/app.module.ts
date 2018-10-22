@@ -32,6 +32,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { AwaitResultComponent } from './new/await-result/await-result.component';
 import { CustomSolutionsComponent } from './custom-solutions/custom-solutions.component';
 import { WorkloadsComponent } from './workloads/workloads.component';
+import { FooterComponent } from './footer/footer.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -53,7 +55,9 @@ import { WorkloadsComponent } from './workloads/workloads.component';
     SignInComponent,
     AwaitResultComponent,
     CustomSolutionsComponent,
-    WorkloadsComponent
+    WorkloadsComponent,
+    FooterComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
