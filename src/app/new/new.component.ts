@@ -51,15 +51,6 @@ export class NewComponent implements OnInit {
       this.refreshStage();
    }
 
-    // TODO remove this
-    uploadDataSet(): void {
-    if (this.textFieldContent === '') {
-      return null;
-    }
-    let data = JSON.parse(this.textFieldContent);
-    this.dataService.storeNewInputDataSet(data);
-  }
-
 
   /* NAV controls */
   next(): void {

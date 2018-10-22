@@ -16,6 +16,7 @@ export class SelectInputComponent implements OnInit {
   @Input() dataService: DataService;
   @Input() comparisonService: ComparisonService;
   @Output() nextEvent = new EventEmitter();
+  errors: string;
 
   inputSets: Object;
   selectedInputSets: number[];
@@ -50,9 +51,19 @@ export class SelectInputComponent implements OnInit {
   }
 
   saveNewInput(): void {
-    this.dataService.storeNewInputDataSet(this.textFieldContent);
-    this.load();
-    this.setMode(0);
+    this.dataService.storeNewInputDataSet(this.textFieldContent)
+    .subscribe(
+      (val) => {
+        console.log("SAVE SUCCESSFUL",val);
+        this.errors = '';
+        this.load();
+        this.setMode(0);
+      },
+      response => {
+        console.log("ERROR SAVING", response );
+        this.errors = 'Invalid input, failed to save';
+      });
+
   }
 
   public delete(input: number): void {

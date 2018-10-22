@@ -20,6 +20,9 @@
     </div>
     <button (click)="setMode(0)" class='btn btn-secondary m-2'>Cancel</button>
     <button (click)="saveNewInput()" class='btn btn-success m-2'>Save</button>
+    <div class="alert-danger m-3">
+      {{errors}}
+    </div>
     </form>
 
   </ng-template>
