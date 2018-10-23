@@ -39,7 +39,7 @@ export class NewComponent implements OnInit {
     public comparisonService: ComparisonService) { }
 
     ngOnInit() {
-      this.stage = 1;
+      this.stage = 0;
       this.comparisonService = new ComparisonService();
       console.log(this.comparisonService.setAccount(this.sessionService.getAccountId())); // TODO this is hardcoded
       console.log(this.comparisonService.getComparison());
