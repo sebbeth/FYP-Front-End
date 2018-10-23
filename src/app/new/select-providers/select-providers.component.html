@@ -6,14 +6,23 @@
   </ol>
 <div class="container">
   <div class="row">
-  <div class="alert alert-secondary col-12" role="alert">
+  <div class="alert alert-warning col-12" role="alert">
     <h4 class="alert-heading">Custom <button (click)="selectAll(0)" class="btn btn-outline-secondary ml-2">Select All</button></h4>
     <hr>
-    <ul class="row" *ngFor="let solution of customSolutions">
-      <li>
-        Custom
-      </li>
-    </ul>
+    <div *ngIf="customSolutions | async as customSolutions else noData">
+      <div class="row" *ngFor="let solution of customSolutions">
+        <div class="col-12">
+            <div (click)="toggleSolutionSelected(solution.id)" class="alert d-flex justify-content-between "  [ngClass]="{' alert-success' : comparisonService.solutionIsSelected(+solution.id), ' alert-secondary' : !comparisonService.solutionIsSelected(+solution.id)}">
+              <span>
+                <i *ngIf="comparisonService.solutionIsSelected(+solution.id)" class="far fa-check-square mr-2"></i>
+                {{solution.title}}
+                <button (click)="delete(+input.id)" class='btn btn-outline-danger ml-2'  placement="top" ngbTooltip="Delete"><i class="far fa-trash-alt"></i></button>
+                <button (click)="delete(+input.id)" class='btn btn-outline-info ml-2'  placement="top" ngbTooltip="Edit"><i class="far fa-edit"></i></button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
     <a  routerLink="/my-resources"  class="btn btn-primary float-right">Add a new solution</a>
   </div>
 </div>
@@ -24,7 +33,7 @@
         <hr>
         <div *ngFor="let solution of provider.solutions">
           <div (click)="toggleSolutionSelected(solution.id)" class="alert d-flex justify-content-between"  [ngClass]="{' alert-success' : comparisonService.solutionIsSelected(+solution.id), ' alert-secondary' : !comparisonService.solutionIsSelected(+solution.id)}">
-            <span><i *ngIf="comparisonService.solutionIsSelected(+solution.id)" class="far fa-check-square mr-2"></i>{{solution.title}}</span>
+            <span><i *ngIf="comparisonService.solutionIsSelected(+solution.id)" class="far fa-check-square mr-2"></i>{{solution.data.title}}</span>
           </div>
         </div>
       </div>

@@ -22,6 +22,7 @@ export class SelectProvidersComponent implements OnInit {
 
   ngOnInit() {
     this.providers = this.dataService.getAllProviders();
+    this.customSolutions = this.dataService.getAllCustomSolutions();
   }
 
 

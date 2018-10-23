@@ -174,6 +174,13 @@ export class DataService {
       .map(data => _.values(data))
       .do(console.log);
     }
+
+    public getAllCustomSolutions(): Observable<Object[]> {
+      return this.http
+      .get(this.getAPIUrl() + "/solution/",this.getHttpHeaders())
+      .map(data => _.values(data))
+      .do(console.log);
+    }
     public getAccount(email: string, password: string): Observable<Account> {
       return this.http
       .get<Account>(this.getAPIUrl() + "/account/",this.getHttpHeaders())
