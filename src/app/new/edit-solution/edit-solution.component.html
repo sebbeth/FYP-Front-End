@@ -1,7 +1,7 @@
 <div class="container"  *ngIf="loaded">
 
 
-<h2 class="display-4">Custom Solution</h2>
+<h3>Custom Solution</h3>
 
 <span>Describe your hardware configuration and the costs assocaiated with running it.</span>
 
@@ -23,7 +23,51 @@
       <option>hosted</option>
     </select>
   </div>
+
+    <div class="form-group">
+      <label for="cpu">CPU</label>
+      <select class="form-control" id="cpu" [(ngModel)]="solution_spec_cpu" name="cpu" required>
+          <option *ngFor="let option of cpu_options" [value]="option">{{option}}</option>
+        </select>
+      </div>
+  <div class="form-group">
+    <label for="cpu">Memory</label>
+    <input [(ngModel)]="solution_spec_memory" title="memory" id="memory" name="memory" type="text" class="form-control" required>
+</div>
+<div class="form-group">
+  <label for="cpu">Disk I/O</label>
+  <input [(ngModel)]="solution_spec_disk" title="disk" id="disk" name="disk" type="text" class="form-control" required>
+</div>
+<div class="form-group">
+  <label for="cpu">Storage</label>
+  <input [(ngModel)]="solution_spec_storage" title="storage" id="storage" name="storage" type="text" class="form-control" required>
+</div>
+<hr>
+<h4>Costs</h4>
+<div class="form-group">
+  <label for="electrical_cost">Electrical cost (hourly)</label>
+  <input [(ngModel)]="solution.electrical_cost_hourly" title="electrical_cost" id="electrical_cost" name="electrical_cost" type="text" class="form-control" required>
+</div>
+<div class="form-group">
+  <label for="labour_cost">Lablour cost (hourly)</label>
+  <input [(ngModel)]="solution.labour_cost_hourly" title="labour_cost" id="labour_cost" name="labour_cost" type="text" class="form-control" required>
+</div>
+<div class="form-group">
+  <label for="other_cost">Other cost (hourly)</label>
+  <input [(ngModel)]="solution.other_cost_hourly" title="other_cost" id="other_cost" name="other_cost" type="text" class="form-control" required>
+</div>
+<hr>
+<h4>Usage Costs</h4>
+
+
+  <div class="form-group">
+    <label for="type">Usage costs</label>
+    <div *ngFor="let item of solution.usage_costs">
+      <span>{{getUsageCostLabel(item.type)}}<input [(ngModel)]="item.value" name="{{item.type}}" type="text" class="form-control"></span>
+    </div>
+  </div>
 </form>
+
 
 
 <span class="d-flex justify-content-end">

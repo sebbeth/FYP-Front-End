@@ -18,7 +18,7 @@ export class SelectProvidersComponent implements OnInit {
   providers: Object;
   customSolutions: Object;
   selectedSolutions: number[];
-  editSolutionId: number = -1;
+  editSolutionId: number = 19;
   constructor() { }
 
   ngOnInit() {

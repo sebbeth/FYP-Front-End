@@ -17,22 +17,48 @@ export class EditSolutionComponent implements OnInit {
   solution: Solution;
   errors: string;
   loaded: boolean = true;
+  cpu_options: string[] = [
+    "Intel Xeon CPU E5-2670 @ 2.60GHz",
+	"AMD Ryzen Threadripper 1950X",
+	"Intel Core i5-4288U @ 2.60GHz"
+];
+  solution_spec_cpu: string;
+  solution_spec_memory: number;
+  solution_spec_disk: number;
+  solution_spec_storage: number;
+
+  usage_cost_cpu: number;
+  usage_cost_memory: number;
+  usage_cost_disk: number;
+  usage_cost_storage: number;
 
   constructor() { }
 
   ngOnInit() {
     this.solution = new Solution();
 
+    this.solution_spec_cpu = this.cpu_options[0];
+    this.solution_spec_memory = 0;
+    this.solution_spec_disk = 0;
+    this.solution_spec_storage = 0;
+
+    this.solution.usage_costs[0] = {type:'C',value:0};
+    this.solution.usage_costs[1] = {type:'M',value:0};
+    this.solution.usage_costs[2] = {type:'D',value:0};
+    this.solution.usage_costs[3] = {type:'S',value:0};
+
     if (this.solutionId != -1) {
       this.loaded = false;
        this.dataService.getCustomSolution(this.solutionId).subscribe(
          (response) => {
            this.solution = response;
-           console.log(response);
-           this.loaded = true;
-         }
-       );
+           this.solution_spec_cpu = response.spec[0].value;
+           this.solution_spec_memory = response.spec[1].value;
+           this.solution_spec_disk = response.spec[2].value;
+           this.solution_spec_storage = response.spec[3].value;
 
+           this.loaded = true;
+         });
     }
   }
 
@@ -54,6 +80,11 @@ export class EditSolutionComponent implements OnInit {
     }
       console.log(this.solution);
 
+      this.solution.spec[0] = {type:"C", value:this.solution_spec_cpu};
+      this.solution.spec[1] = {type:"M", value:this.solution_spec_memory, unit:'gb'};
+      this.solution.spec[2] = {type:"D", value:this.solution_spec_disk, unit:'mbs'};
+      this.solution.spec[3] = {type:"S", value:this.solution_spec_storage, unit:'gb'};
+
       // Ok, now send the API request
 
       this.dataService.storeCustomSolution(this.solution).subscribe(
@@ -68,6 +99,22 @@ export class EditSolutionComponent implements OnInit {
         });
   }
 
+  getUsageCostLabel(identifier: string): string {
+    switch(identifier) {
+      case 'C':
+      return 'CPU';
+        break;
+      case 'M':
+        return 'Memory';
+        break;
+      case 'D':
+        return 'Disk i/o';
+        break;
+        case 'S':
+          return 'Storage';
+          break;
+      }
+  }
 
   doneEditing(): void {
     this.done.next();
