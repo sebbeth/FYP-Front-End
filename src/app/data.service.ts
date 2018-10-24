@@ -10,6 +10,7 @@ import { catchError, retry } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { InputSet } from './data-structures/InputSet';
 import { ResultObject } from './data-structures/ResultObject';
+import { Solution } from './data-structures/solution';
 import { Account } from './data-structures/account';
 import { Comparison } from './data-structures/comparison';
 
@@ -38,10 +39,10 @@ export class DataService {
 
 
   constructor(
-     private http: HttpClient,
-     private sessionService: SessionService
-   ) {
- }
+    private http: HttpClient,
+    private sessionService: SessionService
+  ) {
+  }
 
 
   public setAPIMode(mode) {
@@ -74,7 +75,7 @@ export class DataService {
 
 
   private getHttpHeaders(): Object {
-  //  console.log('DATA' + this.sessionService.getAccountId());
+    //  console.log('DATA' + this.sessionService.getAccountId());
     let account = this.sessionService.getAccount();
     if (account == null ) {
       return ''
@@ -118,73 +119,85 @@ export class DataService {
 
 
   public storeNewInputDataSet(data): Observable<Object> {
-
-    return this.http.post(this.getAPIUrl() + "/upload/",
-    data,this.getHttpHeaders());
-    }
+    return this.http.post(this.getAPIUrl() + "/upload/",data,this.getHttpHeaders());
+  }
 
 
-    public getResultWithId(id): Observable<ResultObject> {
-
-      return this.http
-      .get<ResultObject>(this.getAPIUrl() + "/comparison/" + id,this.getHttpHeaders());
-    }
-
-    /*
-    for refrence, here is how to do work on the response of GET request before returning the observable
+  public getResultWithId(id): Observable<ResultObject> {
 
     return this.http
-    .get<ResultObject>(this.getAPIUrl() + "/comparison/" + id,this.getHttpHeaders())
-    .map(response=>{
-          response.data = JSON.parse(response.data); // Extract the result data stored as a string from the Result object and store it as JSON.
-          return response;
-      })
-
-    */
-
-
-    public deleteInputSet(id): void {
-      this.http.delete(this.getAPIUrl() + "/upload/" + id,this.getHttpHeaders()).subscribe();
-    }
-
-    public getAllResults(): Observable<ResultObject[]> {
-      return this.http
-      .get<ResultObject[]>(this.getAPIUrl() + "/comparison/",this.getHttpHeaders())
-      .map(data => _.values(data))
-      .do(console.log);
-    }
-
-    public getInputSet(id: Number): Observable<InputSet> {
-      return this.http
-      .get<InputSet> (this.getAPIUrl() + "/upload/" + id,this.getHttpHeaders())
-      .map(data => _.values(data))
-      .do(console.log);
-    }
-
-    public getAllInputSets(): Observable<InputSet[]> {
-      return this.http
-      .get<InputSet[]> (this.getAPIUrl() + "/upload/",this.getHttpHeaders())
-      .map(data => _.values(data))
-      .do(console.log);
-    }
-
-    public getAllProviders(): Observable<Object[]> {
-      return this.http
-      .get(this.getAPIUrl() + "/provider/",this.getHttpHeaders())
-      .map(data => _.values(data))
-      .do(console.log);
-    }
-
-    public getAllCustomSolutions(): Observable<Object[]> {
-      return this.http
-      .get(this.getAPIUrl() + "/solution/",this.getHttpHeaders())
-      .map(data => _.values(data))
-      .do(console.log);
-    }
-    public getAccount(email: string, password: string): Observable<Account> {
-      return this.http
-      .get<Account>(this.getAPIUrl() + "/account/",this.getHttpHeaders())
-      .map(data => _.values(data));
-    }
-
+    .get<ResultObject>(this.getAPIUrl() + "/comparison/" + id,this.getHttpHeaders());
   }
+
+  /*
+  for refrence, here is how to do work on the response of GET request before returning the observable
+
+  return this.http
+  .get<ResultObject>(this.getAPIUrl() + "/comparison/" + id,this.getHttpHeaders())
+  .map(response=>{
+  response.data = JSON.parse(response.data); // Extract the result data stored as a string from the Result object and store it as JSON.
+  return response;
+})
+
+*/
+
+
+public deleteInputSet(id): void {
+  this.http.delete(this.getAPIUrl() + "/upload/" + id,this.getHttpHeaders()).subscribe();
+}
+
+public getAllResults(): Observable<ResultObject[]> {
+  return this.http
+  .get<ResultObject[]>(this.getAPIUrl() + "/comparison/",this.getHttpHeaders())
+  .map(data => _.values(data))
+  .do(console.log);
+}
+
+public getInputSet(id: number): Observable<InputSet> {
+  return this.http
+  .get<InputSet> (this.getAPIUrl() + "/upload/" + id,this.getHttpHeaders())
+  .map(data => _.values(data))
+  .do(console.log);
+}
+
+public getAllInputSets(): Observable<InputSet[]> {
+  return this.http
+  .get<InputSet[]> (this.getAPIUrl() + "/upload/",this.getHttpHeaders())
+  .map(data => _.values(data))
+  .do(console.log);
+}
+
+public getAllProviders(): Observable<Object[]> {
+  return this.http
+  .get(this.getAPIUrl() + "/provider/",this.getHttpHeaders())
+  .map(data => _.values(data))
+  .do(console.log);
+}
+
+public getAllCustomSolutions(): Observable<Object[]> {
+  return this.http
+  .get(this.getAPIUrl() + "/solution/",this.getHttpHeaders())
+  .map(data => _.values(data))
+  .do(console.log);
+}
+
+public getCustomSolution(id: number ): Observable<Solution> {
+  return this.http
+  .get<Solution>(this.getAPIUrl() + "/solution/" + id,this.getHttpHeaders());
+}
+
+public deleteCustomSolution(id: number ): void {
+  this.http.delete(this.getAPIUrl() + "/solution/" + id, this.getHttpHeaders()).subscribe();
+}
+
+public storeCustomSolution(solution: Solution): Observable<Object> {
+  return this.http.post(this.getAPIUrl() + "/solution/",solution,this.getHttpHeaders());
+}
+
+public getAccount(email: string, password: string): Observable<Account> {
+  return this.http
+  .get<Account>(this.getAPIUrl() + "/account/",this.getHttpHeaders())
+  .map(data => _.values(data));
+}
+
+}

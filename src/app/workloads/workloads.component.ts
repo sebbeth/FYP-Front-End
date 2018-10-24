@@ -12,7 +12,7 @@ import { InputSet } from '../data-structures/InputSet';
 export class WorkloadsComponent implements OnInit {
 
 
-  id: Number;
+  id: number;
   loaded: boolean = true;
   workload$: Observable<InputSet>;
   workload: String;

@@ -18,6 +18,7 @@ export class SelectProvidersComponent implements OnInit {
   providers: Object;
   customSolutions: Object;
   selectedSolutions: number[];
+  editSolutionId: number = -1;
   constructor() { }
 
   ngOnInit() {
@@ -35,6 +36,21 @@ export class SelectProvidersComponent implements OnInit {
     solutions.forEach((solution) => {
       this.comparisonService.toggleSolution(+solution.id);
     });
+  }
+
+  public delete(solution: number): void {
+    this.dataService.deleteCustomSolution(solution);
+    //TODO pop the solution from the array as well as deleting it on the api
+    //  this.customSolutions.splice(solution, 1);
+  }
+
+
+  public editSolution(solution: number): void {
+    this.editSolutionId = solution;
+  }
+
+  public finishEditingSolution(): void {
+    this.editSolutionId = 0;
   }
 
   // Component setup and teardown functions

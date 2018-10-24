@@ -4,26 +4,30 @@
     <li class="breadcrumb-item active">Platforms</li>
     <li class="breadcrumb-item">Calculate</li>
   </ol>
-<div class="container">
+
+<div *ngIf="editSolutionId != 0">
+  <app-edit-solution (done)="finishEditingSolution()" [dataService]="dataService" [comparisonService]="comparisonService" [solutionId]="editSolutionId"></app-edit-solution>
+</div>
+<div class="container" *ngIf="editSolutionId == 0">
   <div class="row">
   <div class="alert alert-warning col-12" role="alert">
-    <h4 class="alert-heading">Custom <button (click)="selectAll(0)" class="btn btn-outline-secondary ml-2">Select All</button></h4>
-    <hr>
     <div *ngIf="customSolutions | async as customSolutions else noData">
+      <h4 class="alert-heading">Custom <button (click)="selectAll(customSolutions)" class="btn btn-outline-secondary ml-2">Select All</button></h4>
+      <hr>
       <div class="row" *ngFor="let solution of customSolutions">
         <div class="col-12">
             <div (click)="toggleSolutionSelected(solution.id)" class="alert d-flex justify-content-between "  [ngClass]="{' alert-success' : comparisonService.solutionIsSelected(+solution.id), ' alert-secondary' : !comparisonService.solutionIsSelected(+solution.id)}">
               <span>
                 <i *ngIf="comparisonService.solutionIsSelected(+solution.id)" class="far fa-check-square mr-2"></i>
                 {{solution.title}}
-                <button (click)="delete(+input.id)" class='btn btn-outline-danger ml-2'  placement="top" ngbTooltip="Delete"><i class="far fa-trash-alt"></i></button>
-                <button (click)="delete(+input.id)" class='btn btn-outline-info ml-2'  placement="top" ngbTooltip="Edit"><i class="far fa-edit"></i></button>
+                <button (click)="delete(+solution.id)" class='btn btn-outline-danger ml-2'  placement="top" ngbTooltip="Delete"><i class="far fa-trash-alt"></i></button>
+                <button (click)="editSolution(+solution.id)" class='btn btn-outline-info ml-2'  placement="top" ngbTooltip="Edit"><i class="far fa-edit"></i></button>
               </span>
             </div>
           </div>
         </div>
       </div>
-    <a  routerLink="/my-resources"  class="btn btn-primary float-right">Add a new solution</a>
+    <button  (click)="editSolution(-1)"  class="btn btn-outline-primary float-right">Add a new solution</button>
   </div>
 </div>
   <div *ngIf="providers | async as providers else noData">

@@ -27,7 +27,7 @@ import { LineChartComponent } from './results/line-chart/line-chart.component';
 import { SelectInputComponent } from './new/select-input/select-input.component';
 import { SelectProvidersComponent } from './new/select-providers/select-providers.component';
 import { EditInputSetComponent } from './edit-input-set/edit-input-set.component';
-import { EditSolutionComponent } from './edit-solution/edit-solution.component';
+import { EditSolutionComponent } from './new/edit-solution/edit-solution.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { AwaitResultComponent } from './new/await-result/await-result.component';
 import { CustomSolutionsComponent } from './custom-solutions/custom-solutions.component';
