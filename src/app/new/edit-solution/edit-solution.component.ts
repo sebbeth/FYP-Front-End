@@ -19,9 +19,9 @@ export class EditSolutionComponent implements OnInit {
   loaded: boolean = true;
   cpu_options: string[] = [
     "Intel Xeon CPU E5-2670 @ 2.60GHz",
-	"AMD Ryzen Threadripper 1950X",
-	"Intel Core i5-4288U @ 2.60GHz"
-];
+    "AMD Ryzen Threadripper 1950X",
+    "Intel Core i5-4288U @ 2.60GHz"
+  ];
   solution_spec_cpu: string;
   solution_spec_memory: number;
   solution_spec_disk: number;
@@ -31,7 +31,7 @@ export class EditSolutionComponent implements OnInit {
   usage_cost_memory: number;
   usage_cost_disk: number;
   usage_cost_storage: number;
-
+  usage_cost_any: number;
   constructor() { }
 
   ngOnInit() {
@@ -46,38 +46,39 @@ export class EditSolutionComponent implements OnInit {
     this.solution.usage_costs[1] = {type:'M',value:0};
     this.solution.usage_costs[2] = {type:'D',value:0};
     this.solution.usage_costs[3] = {type:'S',value:0};
+    this.solution.usage_costs[4] = {type:'any', value:0};
 
     if (this.solutionId != -1) {
       this.loaded = false;
-       this.dataService.getCustomSolution(this.solutionId).subscribe(
-         (response) => {
-           this.solution = response;
-           this.solution_spec_cpu = response.spec[0].value;
-           this.solution_spec_memory = response.spec[1].value;
-           this.solution_spec_disk = response.spec[2].value;
-           this.solution_spec_storage = response.spec[3].value;
+      this.dataService.getCustomSolution(this.solutionId).subscribe(
+        (response) => {
+          this.solution = response;
+          this.solution_spec_cpu = response.spec[0].value;
+          this.solution_spec_memory = response.spec[1].value;
+          this.solution_spec_disk = response.spec[2].value;
+          this.solution_spec_storage = response.spec[3].value;
 
-           this.loaded = true;
-         });
+          this.loaded = true;
+        });
+      }
     }
-  }
 
 
-  cancel(): void {
-    this.done.next();
+    cancel(): void {
+      this.done.next();
 
-  }
+    }
 
-  /*
+    /*
     determine whether we are editing or making new
     construct the json object from the solution
     send the json object to the api
-  */
-  save(): void {
+    */
+    save(): void {
 
-    if (this.solutionId != -1) {
-      this.solution.id = this.solutionId;
-    }
+      if (this.solutionId != -1) {
+        this.solution.id = this.solutionId;
+      }
       console.log(this.solution);
 
       this.solution.spec[0] = {type:"C", value:this.solution_spec_cpu};
@@ -97,27 +98,27 @@ export class EditSolutionComponent implements OnInit {
           console.log("ERROR SAVING", response );
           this.errors = 'Invalid input, failed to save';
         });
-  }
-
-  getUsageCostLabel(identifier: string): string {
-    switch(identifier) {
-      case 'C':
-      return 'CPU';
-        break;
-      case 'M':
-        return 'Memory';
-        break;
-      case 'D':
-        return 'Disk i/o';
-        break;
-        case 'S':
-          return 'Storage';
-          break;
       }
-  }
 
-  doneEditing(): void {
-    this.done.next();
-  }
+      getUsageCostLabel(identifier: string): string {
+        switch(identifier) {
+          case 'C':
+            return 'CPU';
+          case 'M':
+            return 'Memory';
+          case 'D':
+            return 'Disk i/o';
+          case 'S':
+            return 'Storage';
+          case 'any':
+            return 'Any usage';
+          default:
+              return '?';
+        }
+      }
 
-}
+      doneEditing(): void {
+        this.done.next();
+      }
+
+    }

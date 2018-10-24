@@ -29,10 +29,10 @@
   <div class="col">
     <div class="alert alert-primary">
       <div class="d-flex justify-content-between">
-      <span class="">{{result.timestamp}}</span>
+      <span class=""><strong>Date completed:</strong><br>{{result.timestamp}}</span>
       <div>
       <span *ngFor="let icon of generateProviderIconsForResult(result)">
-        <span [innerHTML]="icon" class="badge badge-light ml-2" placement="top" ngbTooltip="Tooltip on top"></span>
+        <span [innerHTML]="icon" class="badge badge-light ml-2"></span>
       </span>
     </div>
     <span *ngIf="result.status != 'PENDING' else pending">

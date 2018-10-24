@@ -43,6 +43,10 @@ export class HomeComponent implements OnInit {
     return output;
   }
 
+  providerTooltip(provider: Object): string {
+    return '<em>Tooltip</em> <u>with</u> <b>HTML</b>';
+  }
+
   isSignedIn(): boolean {
     return this.sessionService.isSignedIn();
   }
