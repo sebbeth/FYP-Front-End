@@ -21,7 +21,7 @@ export class SelectInputComponent implements OnInit {
   inputSets: Object;
   selectedInputSets: number[];
 
-  textFieldContent = '{"example":"input"}';
+  textFieldContent = '{"description": "Example Input","start_date": "2018-10-10T00:00:00","spec": [{"type": "C","value": "Intel Xeon CPU E5-2670 @ 2.60GHz",  "unit": "model",},{"type": "M","value": "16","unit": "gb"},{"type": "S","value": "200","unit": "gb"}],"data": [{"C": <value>,"M": <value>,"S": <value>},{"C":<value>,"M": <value>,"S": <value>,}]}';
 
   constructor() { }
 

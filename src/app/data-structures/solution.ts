@@ -8,6 +8,5 @@ export class Solution {
   other_cost_hourly: number;
   spec: any[] = [];
   usage_costs: any[] = [];
-  
 
 }

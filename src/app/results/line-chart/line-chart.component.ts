@@ -14,7 +14,28 @@ export class LineChartComponent {
   public lineChartData:Array<any> = [];
   public lineChartLabels:Array<any> = [];
   public lineChartOptions:any = {
-    responsive: true
+    responsive: true,
+    scales: {
+    yAxes: [{
+      scaleLabel: {
+        display: true,
+        labelString: 'Cost (AUD)'
+      }
+    }],
+    xAxes: [{
+      scaleLabel: {
+        display: true,
+        labelString: 'Time (Hours)'
+      }
+    }]
+  },
+  tooltips: {
+          callbacks: {
+              label: function(tooltipItems, data) {
+                  return "$" + tooltipItems.yLabel.toString();
+              }
+            }
+          }
   };
 
 
@@ -52,7 +73,13 @@ export class LineChartComponent {
   ngOnInit() {
 
     const providerHelper = new ProviderHelper();
-    console.log(this.resultData);
+
+    this.resultData.time.forEach((time) => {
+      this.lineChartLabels.push(this.getDateFromTime(time));
+    });
+
+  //  this.resultData = this.pruneSegments(this.resultData);
+
     for (let i = 0; i < this.resultData.data.length; i++) { // For each data object from the API
       this.lineChartData.push({data: this.resultData.data[i].segments, label: providerHelper.getName(this.resultData.data[i].provider)}); // Add the segments array to lineChartData
 
@@ -66,9 +93,7 @@ export class LineChartComponent {
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     });
     }
-    for (let j = 0; j < this.resultData.data[0].segments.length; j++) { // Now add the X axis labels
-      this.lineChartLabels.push(j);
-    }
+
   }
 
   // events
@@ -77,6 +102,39 @@ export class LineChartComponent {
 //  this.lineChartData.push({data: 20, label: "Added"});
 
   //console.log(this.resultData);
+}
+
+private pruneSegments(result: ResultObject ): ResultObject {
+
+    console.log('PRUNE');
+    console.log(result);
+    console.log('DONE');
+
+    result.data.forEach((solution) => {
+
+      let pruneLength = -1;
+      if (solution.segments.length > 200) {
+        pruneLength = 24 * 30;
+      }
+
+      if (pruneLength != -1) {
+        let i;
+        for (i = 0; i < solution.segments.length; i = i + pruneLength) {
+          solution.segments.splice(i,pruneLength);
+          this.lineChartLabels.splice(i,pruneLength);
+        }
+      }
+      console.log(solution.segments);
+
+    });
+    return result;
+}
+
+private getDateFromTime(time: number): string {
+  let date = new Date(0); // The 0 there is the key, which sets the date to the epoch
+  date.setUTCSeconds(time);
+  return date.toLocaleString();
+
 }
 
 public chartHovered(e:any):void {

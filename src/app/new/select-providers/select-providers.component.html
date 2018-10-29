@@ -9,6 +9,10 @@
   <app-edit-solution (done)="finishEditingSolution()" [dataService]="dataService" [comparisonService]="comparisonService" [solutionId]="editSolutionId"></app-edit-solution>
 </div>
 <div class="container" *ngIf="editSolutionId == 0">
+  <div class="text-center">
+    <p>Select the platforms you'd like to compare below, custom plaforms can be added to model on-site solutions.</p>
+    <br><br>
+  </div>
   <div class="row">
   <div class="alert alert-warning col-12" role="alert">
     <div *ngIf="customSolutions | async as customSolutions else noData">
@@ -43,13 +47,11 @@
       </div>
     </div>
   </div>
-
   <!-- nav buttons -->
   <button [disabled]="!hasNext()" (click)="next()" class="btn btn-lg btn-primary float-right">Next</button>
   <button  (click)="previous()" class="btn btn-lg btn-outline-secondary float-right mr-2">Previous</button>
 
   <ng-template #noData>loading...</ng-template>
-
 
 </div>
 </div>

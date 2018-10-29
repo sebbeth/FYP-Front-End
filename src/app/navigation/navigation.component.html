@@ -1,14 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a routerLink="/" class="navbar-brand">CCA</a>
-
-
-
-
-
+    <a *ngIf="showHome()" routerLink="/" class="nav-link"><i class="fas fa-chevron-left mr-1"></i>Home</a>
       <ul class="navbar-nav mr-auto">
       </ul>
     <!--  <a routerLink="/setup" class="btn btn-outline-success my-2 my-sm-0" >Create Account</a> -->
-    <span class="m-2">Account ID {{getAccountId()}}</span>
       <div *ngIf="isSignedIn();else signedOut">
         <a routerLink="/profile"  class='btn btn-primary'>Profile</a>
         <button (click)="signOut()" class="btn btn-outline-primary ml-1">Sign Out</button>

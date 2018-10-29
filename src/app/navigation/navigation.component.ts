@@ -41,4 +41,11 @@ export class NavigationComponent implements OnInit {
     this.router.navigate(['']);
   }
 
+  showHome(): boolean {
+    if (this.router.url === '/') {
+      return false;
+    }
+    return true;
+  }
+
 }

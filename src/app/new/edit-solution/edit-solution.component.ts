@@ -18,10 +18,17 @@ export class EditSolutionComponent implements OnInit {
   errors: string;
   loaded: boolean = true;
   cpu_options: string[] = [
+    "",
     "Intel Xeon CPU E5-2670 @ 2.60GHz",
     "AMD Ryzen Threadripper 1950X",
     "Intel Core i5-4288U @ 2.60GHz"
   ];
+  frequency_options: string[] = [
+    "Once only",
+    "Yearly",
+    "Every two years"
+  ];
+  //TODO connect setup cost to data
   solution_spec_cpu: string;
   solution_spec_memory: number;
   solution_spec_disk: number;

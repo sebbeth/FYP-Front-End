@@ -18,9 +18,11 @@ export class ResultsComponent implements OnInit {
 
   resultId: number;
   result: ResultObject;
+
   result$: Observable<ResultObject>;
   providerHelper: ProviderHelper = new ProviderHelper;
   loaded: boolean = true;
+  inputSets: Object;
 
   constructor(
         private route: ActivatedRoute,
@@ -30,21 +32,18 @@ export class ResultsComponent implements OnInit {
 
   ngOnInit() {
     this.loaded = false;
+    this.inputSets = [];
     this.resultId = Number(this.router.url.replace('/results/',''));
     this.result$ = this.dataService.getResultWithId(this.resultId);
     this.result$.subscribe(result => {
       this.result = result
       this.loaded = true;
+      console.log(result);
     });
-  /*  this.result$.subscribe(
-      function(result) {
-        this.result = result;
-        this.graphData = [first,second,third];
-        this.loaded = true;
-
-      }
-    );*/
 
   }
+
+
+
 
 }

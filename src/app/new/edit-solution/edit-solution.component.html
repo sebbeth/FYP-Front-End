@@ -4,6 +4,7 @@
 <h3>Custom Solution</h3>
 
 <span>Describe your hardware configuration and the costs assocaiated with running it.</span>
+<span>If a value is not applicable to the custom solution leave it blank or set it to 0.</span>
 
 
 <hr>
@@ -31,19 +32,33 @@
         </select>
       </div>
   <div class="form-group">
-    <label for="cpu">Memory</label>
+    <label for="cpu">Memory (GBs)</label>
     <input [(ngModel)]="solution_spec_memory" title="memory" id="memory" name="memory" type="text" class="form-control" required>
 </div>
 <div class="form-group">
-  <label for="cpu">Disk I/O</label>
+  <label for="cpu">Disk I/O (mbs)</label>
   <input [(ngModel)]="solution_spec_disk" title="disk" id="disk" name="disk" type="text" class="form-control" required>
 </div>
 <div class="form-group">
-  <label for="cpu">Storage</label>
+  <label for="cpu">Storage (GBs)</label>
   <input [(ngModel)]="solution_spec_storage" title="storage" id="storage" name="storage" type="text" class="form-control" required>
 </div>
 <hr>
 <h4>Costs</h4>
+<div class="form-group">
+  <div class="row">
+  <div class="col-6">
+    <label for="setup_cost">Setup cost</label>
+    <input [(ngModel)]="solution.setup_cost" title="setup_cost" id="setup_cost" name="setup_cost" type="text" class="form-control" required>
+    </div>
+    <div class="col-6">
+  <label for="setup_renewal">Renewal frequency</label>
+  <select class="form-control" id="setup_renewal" [(ngModel)]="solution_setup_frequency" name="setup_renewal" required>
+      <option *ngFor="let option of frequency_options" [value]="option">{{option}}</option>
+    </select>
+    </div>
+    </div>
+</div>
 <div class="form-group">
   <label for="electrical_cost">Electrical cost (hourly)</label>
   <input [(ngModel)]="solution.electrical_cost_hourly" title="electrical_cost" id="electrical_cost" name="electrical_cost" type="text" class="form-control" required>

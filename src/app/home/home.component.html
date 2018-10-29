@@ -30,12 +30,12 @@
     <div class="alert alert-primary">
       <div class="d-flex justify-content-between">
       <span class=""><strong>Date completed:</strong><br>{{result.timestamp}}</span>
-      <div>
+      <div><strong>Platforms compared:</strong><br>
       <span *ngFor="let icon of generateProviderIconsForResult(result)">
-        <span [innerHTML]="icon" class="badge badge-light ml-2"></span>
+        <span [innerHTML]="icon" class="badge badge-light ml-2 px-1"></span>
       </span>
     </div>
-    <span *ngIf="result.status != 'PENDING' else pending">
+    <span *ngIf="result.status != 'PENDING' else pending" class="align-middle">
         <a  routerLink="/results/{{result.id}}"  class='btn btn-primary'>View <i class="pl-1 far fa-chart-bar"></i></a>
       </span>
       <ng-template #pending>Pending...</ng-template>

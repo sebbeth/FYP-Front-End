@@ -5,4 +5,5 @@ export class ResultObject {
   status: string;
   data: any;
   providers: number[];
+  time: any;
 }
