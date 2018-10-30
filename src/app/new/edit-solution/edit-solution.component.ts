@@ -34,6 +34,8 @@ export class EditSolutionComponent implements OnInit {
   solution_spec_disk: number;
   solution_spec_storage: number;
 
+  solution_setup_cost: number;
+
   usage_cost_cpu: number;
   usage_cost_memory: number;
   usage_cost_disk: number;
@@ -48,6 +50,8 @@ export class EditSolutionComponent implements OnInit {
     this.solution_spec_memory = 0;
     this.solution_spec_disk = 0;
     this.solution_spec_storage = 0;
+    this.solution_setup_cost = 0;
+
 
     this.solution.usage_costs[0] = {type:'C',value:0};
     this.solution.usage_costs[1] = {type:'M',value:0};
@@ -64,6 +68,7 @@ export class EditSolutionComponent implements OnInit {
           this.solution_spec_memory = response.spec[1].value;
           this.solution_spec_disk = response.spec[2].value;
           this.solution_spec_storage = response.spec[3].value;
+          this.solution_setup_cost = response.setup_costs[0].cost;
 
           this.loaded = true;
         });
@@ -92,6 +97,10 @@ export class EditSolutionComponent implements OnInit {
       this.solution.spec[1] = {type:"M", value:this.solution_spec_memory, unit:'gb'};
       this.solution.spec[2] = {type:"D", value:this.solution_spec_disk, unit:'mbs'};
       this.solution.spec[3] = {type:"S", value:this.solution_spec_storage, unit:'gb'};
+
+      this.solution.setup_costs[0] = { description: "Setup Costs",
+				cost: this.solution_setup_cost,
+				repeat_in_months: 12 };
 
       // Ok, now send the API request
 

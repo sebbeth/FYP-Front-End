@@ -39,7 +39,7 @@
     <div class="row" *ngFor="let input of inputSets">
       <div class="col" >
         <div (click)="toggleInputSelected(input.id)" class="alert d-flex justify-content-between" [ngClass]="{' alert-success' : comparisonService.inputIsSelected(+input.id), ' alert-secondary' : !comparisonService.inputIsSelected(+input.id)}"  >
-          <span><i *ngIf="comparisonService.inputIsSelected(+input.id)" class="far fa-check-square mr-2"></i>{{input.id}} {{input.description}}</span>
+          <span><i *ngIf="comparisonService.inputIsSelected(+input.id)" class="far fa-check-square mr-2"></i>{{input.description}}</span>
           <span>
             <button (click)="delete(+input.id)" class='btn btn-outline-danger ml-2'  placement="top" ngbTooltip="Delete"><i class="far fa-trash-alt"></i></button>
             <a href="/workloads/{{input.id}}" class='btn btn-outline-secondary ml-2' target="_blank" placement="top" ngbTooltip="View"><i class="far fa-file"></i></a>
