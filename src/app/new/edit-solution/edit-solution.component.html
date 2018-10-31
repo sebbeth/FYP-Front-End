@@ -76,7 +76,7 @@
 
 
   <div class="form-group">
-    <label for="type">Usage costs</label>
+    <label for="type">If the Solution uses metered billing, enter the price of each resource per hour in use at 100% utilisation here. If not applicable, please leave blank</label>
     <div *ngFor="let item of solution.usage_costs">
       <span>{{getUsageCostLabel(item.type)}}<input [(ngModel)]="item.value" name="{{item.type}}" type="text" class="form-control"></span>
     </div>

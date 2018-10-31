@@ -17,7 +17,7 @@ export class SelectInputComponent implements OnInit {
   @Input() comparisonService: ComparisonService;
   @Output() nextEvent = new EventEmitter();
   errors: string;
-
+  busy: boolean = false;;
   inputSets: Object;
   selectedInputSets: number[];
 
@@ -72,10 +72,12 @@ export class SelectInputComponent implements OnInit {
   }
 
   private load(): void {
+    this.busy = true;
     this.selectedInputSets = this.comparisonService.getSelectedInputs();
     this.dataService.getAllInputSets()
     .subscribe(
       result => { this.inputSets = result}
+      this.busy = false;
     );
   }
 

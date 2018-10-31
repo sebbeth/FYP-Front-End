@@ -23,6 +23,7 @@
             <div (click)="toggleSolutionSelected(solution.id)" class="alert d-flex justify-content-between "  [ngClass]="{' alert-success' : comparisonService.solutionIsSelected(+solution.id), ' alert-secondary' : !comparisonService.solutionIsSelected(+solution.id)}">
               <span>
                 <i *ngIf="comparisonService.solutionIsSelected(+solution.id)" class="far fa-check-square mr-2"></i>
+                <i *ngIf="!comparisonService.solutionIsSelected(+solution.id)" class="far fa-square mr-2"></i>
                 {{solution.title}}
                 <button (click)="delete(+solution.id)" class='btn btn-outline-danger ml-2'  placement="top" ngbTooltip="Delete"><i class="far fa-trash-alt"></i></button>
                 <button (click)="editSolution(+solution.id)" class='btn btn-outline-info ml-2'  placement="top" ngbTooltip="Edit"><i class="far fa-edit"></i></button>
@@ -41,7 +42,9 @@
         <hr>
         <div *ngFor="let solution of provider.solutions">
           <div (click)="toggleSolutionSelected(solution.id)" class="alert d-flex justify-content-between"  [ngClass]="{' alert-success' : comparisonService.solutionIsSelected(+solution.id), ' alert-secondary' : !comparisonService.solutionIsSelected(+solution.id)}">
-            <span><i *ngIf="comparisonService.solutionIsSelected(+solution.id)" class="far fa-check-square mr-2"></i>{{solution.data.title}}</span>
+            <span><i *ngIf="comparisonService.solutionIsSelected(+solution.id)" class="far fa-check-square mr-2"></i>
+              <i *ngIf="!comparisonService.solutionIsSelected(+solution.id)" class="far fa-square mr-2"></i>
+              {{solution.data.title}}</span>
           </div>
         </div>
       </div>

@@ -24,9 +24,9 @@ export class EditSolutionComponent implements OnInit {
     "Intel Core i5-4288U @ 2.60GHz"
   ];
   frequency_options: string[] = [
-    "Once only",
-    "Yearly",
-    "Every two years"
+    "Once only"
+  //  "Yearly",
+    //"Every two years"
   ];
   //TODO connect setup cost to data
   solution_spec_cpu: string;
@@ -35,6 +35,7 @@ export class EditSolutionComponent implements OnInit {
   solution_spec_storage: number;
 
   solution_setup_cost: number;
+  solution_setup_frequency: string;
 
   usage_cost_cpu: number;
   usage_cost_memory: number;
@@ -58,6 +59,8 @@ export class EditSolutionComponent implements OnInit {
     this.solution.usage_costs[2] = {type:'D',value:0};
     this.solution.usage_costs[3] = {type:'S',value:0};
     this.solution.usage_costs[4] = {type:'any', value:0};
+
+    this.solution_setup_frequency = this.frequency_options[0];
 
     if (this.solutionId != -1) {
       this.loaded = false;
