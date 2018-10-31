@@ -2,23 +2,25 @@
 <div class="container">
   <div class="row mt-5">
     <div style="width:100%">
-      <h1>View results</h1>
+      <h1>Results</h1>
       <br><br>
       <ul *ngIf="result$ | async as result$ else noData">
         <div *ngIf="loaded">
           <div class="card mb-4">
             <div class="card-body">
-            <p><strong>Date generated:</strong> {{result$.timestamp}}</p>
-            <p><strong>Workloads included in this result:</strong></p>
-            <ul>
-            <li *ngFor="let input of result$.input_descriptions">{{input}}</li>
-            </ul>
+              <p><strong>Date generated:</strong> {{result$.timestamp}}</p>
+              <p><strong>Workloads included in this result:</strong></p>
+              <ul>
+                <li *ngFor="let input of result$.input_descriptions">{{input}}</li>
+              </ul>
             </div>
-            </div>
-            <h3 class="text-center mt-5 mb-2">Cost vs Time for each solution</h3>
+          </div>
+          <h3 class="text-center mt-5 mb-2">Cost vs Time for each solution</h3>
           <line-chart [resultData]="result"></line-chart>
 
           <!-- Insights table-->
+          <div class="col-12">
+            <h3 class="text-center mt-5 mb-2">Summary</h3>
           <table class="table table-striped mt-5">
             <thead>
               <tr>
@@ -35,12 +37,30 @@
                 <th [style.color]="providerHelper.getColour(solution.provider)" >{{providerHelper.getName(solution.provider)}}</th>
                 <td>{{solution.title}}</td>
                 <td>{{solution.total_cost  | currency}}</td>
-                <td><i class="fas fa-microchip mx-1"></i>{{solution.utilisation_cpu | percent}} <i class="fas fa-memory  ml-1"></i> {{solution.utilisation_memory | percent}} <i class="fas fa-exchange-alt  ml-1"></i> {{solution.utilisation_io | percent}} <i class="fas fa-hdd  ml-1"></i> {{solution.utilisation_storage | percent}}</td>
+                <td><span placement="top" ngbTooltip="CPU"><i class="fas fa-microchip mx-1"></i>{{solution.utilisation_cpu | percent}}</span>
+                   <span placement="top" ngbTooltip="Memory"><i class="fas fa-memory  ml-1"></i> {{solution.utilisation_memory | percent}}</span>
+                   <span placement="top" ngbTooltip="Disk I/O"><i class="fas fa-exchange-alt  ml-1"></i> {{solution.utilisation_io | percent}}</span>
+                   <span placement="top" ngbTooltip="Storage"><i class="fas fa-hdd  ml-1"></i> {{solution.utilisation_storage | percent}}</span>
+                </td>
                 <td>{{solution.wasteCost | currency}}</td>
               </tr>
             </tbody>
           </table>
+          </div>
+          <div class="col-4 mt-5">
+            <div class="card">
+              <div class="card-header">
+                <span>Icon Legend</span>
+              </div>
+              <div class="card-body">
+                <p><i class="fas fa-microchip mx-1"></i> <span class="mx-2">-</span> CPU</p>
+                <p><i class="fas fa-memory  ml-1"></i> <span class="mx-2">-</span> Memory </p>
+                <p><i class="fas fa-exchange-alt  ml-1"></i> <span class="mx-2">-</span> Disk Input / Output</p>
+                <p><i class="fas fa-hdd  ml-1"></i> <span class="mx-2">-</span> Storage </p>
 
+              </div>
+            </div>
+          </div>
         </div>
       </ul>
       <ng-template #noData>Loading...</ng-template>

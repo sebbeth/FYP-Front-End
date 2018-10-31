@@ -81,7 +81,8 @@ export class LineChartComponent {
   //  this.resultData = this.pruneSegments(this.resultData);
 
     for (let i = 0; i < this.resultData.data.length; i++) { // For each data object from the API
-      this.lineChartData.push({data: this.resultData.data[i].segments, label: providerHelper.getName(this.resultData.data[i].provider)}); // Add the segments array to lineChartData
+
+      this.lineChartData.push({data: this.resultData.data[i].segments, label: this.resultData.data[i].title}); // Add the segments array to lineChartData
 
       // Set the line colour bases on which provider the solution is a child of
       this.lineChartColors.push({
