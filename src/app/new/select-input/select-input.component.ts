@@ -72,12 +72,10 @@ export class SelectInputComponent implements OnInit {
   }
 
   private load(): void {
-    this.busy = true;
     this.selectedInputSets = this.comparisonService.getSelectedInputs();
     this.dataService.getAllInputSets()
     .subscribe(
       result => { this.inputSets = result}
-      this.busy = false;
     );
   }
 
