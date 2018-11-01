@@ -32,7 +32,7 @@ export class LineChartComponent {
   tooltips: {
           callbacks: {
               label: function(tooltipItems, data) {
-                  return "$" + tooltipItems.yLabel.toString();
+                  return  data.datasets[tooltipItems.datasetIndex].label + "  $" + tooltipItems.yLabel.toString();
               }
             }
           }

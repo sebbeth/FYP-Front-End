@@ -28,6 +28,46 @@ export class HomeComponent implements OnInit {
     //this.dataService.getAccount('me@sebbrown.net','pwd').subscribe(output => console.log(output));
   }
 
+
+  getSolutionList(result: ResultObject): Object[] {
+
+    let output = [];
+    let names = [];
+    let counters = [];
+    let ids = [];
+    console.log(result.providers);
+    let providerHelper = new ProviderHelper();
+    let i = 0;
+    result.providers.forEach((provider) => {
+
+      const indexOfId = ids.indexOf(provider,0);
+      if (indexOfId > -1 ) {
+      // Don't add it, instead interate the counter
+        counters[indexOfId] = counters[indexOfId] + 1;
+        console.log(indexOfId);
+        console.log('ids' + ids);
+      } else {
+        ids.push(provider);
+        names.push(providerHelper.getName(provider));
+        counters.push(1);
+      }
+      i++;
+    });
+
+for (let i = 0; i < ids.length; i++) {
+
+
+      output.push(
+        {
+          name: providerHelper.getName(ids[i]),
+          counter: counters[i]
+        }
+      );
+  }
+    return output;
+
+  }
+
   /*
 
   */

@@ -31,8 +31,11 @@
       <div class="d-flex justify-content-between">
       <span class=""><strong>Date completed:</strong><br>{{result.timestamp}}</span>
       <div><strong>Platforms compared:</strong><br>
-      <span *ngFor="let icon of generateProviderIconsForResult(result)">
-        <span [innerHTML]="icon" class="badge badge-light ml-2 px-1"></span>
+      <span *ngFor="let icon of getSolutionList(result)">
+        <span  class="badge badge-light ml-2 px-1">
+          <span [innerHTML]="icon.name"></span>
+          <span [innerHTML]="icon.counter"class="badge badge-pill badge-primary ml-1"></span>
+        </span>
       </span>
     </div>
     <span *ngIf="result.status != 'PENDING' else pending" class="align-middle">

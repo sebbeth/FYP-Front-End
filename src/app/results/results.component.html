@@ -24,8 +24,8 @@
           <table class="table table-striped mt-5">
             <thead>
               <tr>
-                <th scope="col">Provider</th>
                 <th scope="col">Solution</th>
+                <th scope="col">Provider</th>
                 <th scope="col">Total cost</th>
                 <th scope="col">Average Utilisation</th>
                 <th scope="col">Value of wasted resources</th>
@@ -34,13 +34,13 @@
             <tbody>
               <tr *ngFor="let solution of result.data">
 
-                <th [style.color]="providerHelper.getColour(solution.provider)" >{{providerHelper.getName(solution.provider)}}</th>
-                <td>{{solution.title}}</td>
+                <td [style.color]="providerHelper.getColour(solution.provider)">{{solution.title}}</td>
+                <td  >{{providerHelper.getName(solution.provider)}}</td>
                 <td>{{solution.total_cost  | currency}}</td>
-                <td><span placement="top" ngbTooltip="CPU"><i class="fas fa-microchip mx-1"></i>{{solution.utilisation_cpu | percent}}</span>
-                   <span placement="top" ngbTooltip="Memory"><i class="fas fa-memory  ml-1"></i> {{solution.utilisation_memory | percent}}</span>
-                   <span placement="top" ngbTooltip="Disk I/O"><i class="fas fa-exchange-alt  ml-1"></i> {{solution.utilisation_io | percent}}</span>
-                   <span placement="top" ngbTooltip="Storage"><i class="fas fa-hdd  ml-1"></i> {{solution.utilisation_storage | percent}}</span>
+                <td><span placement="top" ngbTooltip="CPU" class="mr-2"><i class="fas fa-microchip mx-1"></i>{{solution.utilisation_cpu | percent}}</span>
+                   <span placement="top" ngbTooltip="Memory" class="mr-2"><i class="fas fa-memory  ml-1"></i> {{solution.utilisation_memory | percent}}</span>
+                   <span placement="top" ngbTooltip="Disk I/O" class="mr-2"><i class="fas fa-exchange-alt  ml-1"></i> {{solution.utilisation_io | percent}}</span>
+                   <span placement="top" ngbTooltip="Storage" class="mr-2"><i class="fas fa-hdd  ml-1"></i> {{solution.utilisation_storage | percent}}</span>
                 </td>
                 <td>{{solution.wasteCost | currency}}</td>
               </tr>
