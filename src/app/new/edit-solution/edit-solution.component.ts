@@ -140,4 +140,11 @@ export class EditSolutionComponent implements OnInit {
         this.done.next();
       }
 
+      isLocal(): boolean {
+        if (this.solution.type == 'local') {
+          return true;
+        }
+        return false;
+      }
+
     }
