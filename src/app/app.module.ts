@@ -15,7 +15,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { DataService } from './data.service';
 import { SessionService } from './session.service';
-import { LandingComponent } from './landing/landing.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { HomeComponent } from './home/home.component';
 import { NewComponent } from './new/new.component';
@@ -35,7 +34,6 @@ import { AboutComponent } from './about/about.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LandingComponent,
     NavigationComponent,
     HomeComponent,
     NewComponent,
