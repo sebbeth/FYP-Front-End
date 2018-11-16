@@ -34,13 +34,13 @@
             <tbody>
               <tr *ngFor="let solution of result.data">
 
-                <td [style.color]="providerHelper.getColour(solution.provider)">{{solution.title}}</td>
+                <td [style.color]="providerHelper.getColour(solution.provider)"><span *ngIf="solution.underperforming" class="badge badge-pill badge-danger" placement="top" ngbTooltip="This solution does not have enough resources to fully support the workloads, some underperformance will occur."><i class="fas fa-exclamation-triangle"></i></span>  {{solution.title}}</td>
                 <td  >{{providerHelper.getName(solution.provider)}}</td>
                 <td>{{solution.total_cost  | currency}}</td>
-                <td><span placement="top" ngbTooltip="CPU" class="mr-2"><i class="fas fa-microchip mx-1"></i>{{solution.utilisation_cpu | percent}}</span>
-                   <span placement="top" ngbTooltip="Memory" class="mr-2"><i class="fas fa-memory  ml-1"></i> {{solution.utilisation_memory | percent}}</span>
-                   <span placement="top" ngbTooltip="Disk I/O" class="mr-2"><i class="fas fa-exchange-alt  ml-1"></i> {{solution.utilisation_io | percent}}</span>
-                   <span placement="top" ngbTooltip="Storage" class="mr-2"><i class="fas fa-hdd  ml-1"></i> {{solution.utilisation_storage | percent}}</span>
+                <td><span placement="top" ngbTooltip="CPU" class="mr-2" [ngClass]="{'text-danger' : solution.utilisation_cpu > 1.0 }"><i class="fas fa-microchip mx-1"></i>{{solution.utilisation_cpu | percent}}</span>
+                   <span placement="top" ngbTooltip="Memory" class="mr-2" [ngClass]="{'text-danger' : solution.utilisation_memory > 1.0 }"><i class="fas fa-memory  ml-1"></i> {{solution.utilisation_memory | percent}}</span>
+                   <span placement="top" ngbTooltip="Disk I/O" class="mr-2" [ngClass]="{'text-danger' : solution.utilisation_io > 1.0 }"><i class="fas fa-exchange-alt  ml-1"></i> {{solution.utilisation_io | percent}}</span>
+                   <span placement="top" ngbTooltip="Storage" class="mr-2" [ngClass]="{'text-danger' : solution.utilisation_storage > 1.0 }"><i class="fas fa-hdd  ml-1"></i> {{solution.utilisation_storage | percent}}</span>
                 </td>
                 <td>{{solution.wasteCost | currency}}</td>
               </tr>

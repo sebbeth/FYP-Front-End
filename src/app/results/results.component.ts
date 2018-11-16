@@ -38,7 +38,6 @@ export class ResultsComponent implements OnInit {
     this.result$.subscribe(result => {
       this.result = result
       this.loaded = true;
-      console.log(result);
     });
 
   }
